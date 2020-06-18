@@ -15,7 +15,7 @@ from datetime import date
 # set up pygame
 pygame.init()
 clock = pygame.time.Clock()
-game_font = pygame.font.SysFont('Consolas', 20)
+game_font = pygame.font.SysFont('consolasttf', 20)
 HEIGHT = 600
 WIDTH = 800
 
@@ -98,7 +98,6 @@ space.blit(b_timetravel_button_surface, (20, 560))
 #################### draw window onto the screen
 pygame.display.update()
 
-
 #############################
 # functions
 def zoom_holding():
@@ -110,52 +109,58 @@ def zoom_holding():
 
 #############################
 # main loop
-while True:
-    for event in pygame.event.get():
-        # check for exit
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-
-        # check for mouse click
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = event.pos
-            mouse_held = True
-
-            # search object button
-            if search_object_button.collidepoint(mouse_pos):
-                print('search1 pressed')
-            # search event button
-            if search_event_button.collidepoint(mouse_pos):
-                print('search2 pressed')
-            # calculate launch button
-            if calc_launch_button.collidepoint(mouse_pos):
-                print('calculate transfer pressed')
-            # trails activate/deactivate
-            if trails_button.collidepoint(mouse_pos):
-                print('trails activated')
-            # exit button
-            if exit_button.collidepoint(mouse_pos):
-                print("Exiting...")
+def main():
+    while True:
+        for event in pygame.event.get():
+            # check for exit
+            if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if zoom_slider.collidepoint(mouse_pos):
-                print("zoom click")
-            # date pause/resume
-            if date_button.collidepoint(mouse_pos):
-                print('pause/resume time')
-            # f time travel
-            if f_timetravel_button.collidepoint(mouse_pos):
-                print('ff time travel!')
-            # b time travel
-            if b_timetravel_button.collidepoint(mouse_pos):
-                print('!levart emit sdrawkcab')
 
-            # scrolling
-            # if event.button == 4:
-            #     print("scroll up")
-            # elif event.button == 5:
-            #     print("scroll down")
+            # check for mouse click
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = event.pos
+                mouse_held = True
 
-        if event.type == MOUSEBUTTONUP:
-            mouse_held = False
+                # search object button
+                if search_object_button.collidepoint(mouse_pos):
+                    print('search1 pressed')
+                # search event button
+                if search_event_button.collidepoint(mouse_pos):
+                    print('search2 pressed')
+                # calculate launch button
+                if calc_launch_button.collidepoint(mouse_pos):
+                    print('calculate transfer pressed')
+                # trails activate/deactivate
+                if trails_button.collidepoint(mouse_pos):
+                    print('trails activated')
+                # exit button
+                if exit_button.collidepoint(mouse_pos):
+                    print("Exiting...")
+                    pygame.quit()
+                    sys.exit()
+                if zoom_slider.collidepoint(mouse_pos):
+                    print("zoom bar click")
+                # date pause/resume
+                if date_button.collidepoint(mouse_pos):
+                    print('pause/resume time')
+                # f time travel
+                if f_timetravel_button.collidepoint(mouse_pos):
+                    print('forward time travel!')
+                # b time travel
+                if b_timetravel_button.collidepoint(mouse_pos):
+                    print('!levart emit sdrawkcab')
+
+                # scrolling
+                # if event.button == 4:
+                #     print("scroll up")
+                # elif event.button == 5:
+                #     print("scroll down")
+
+            if event.type == MOUSEBUTTONUP:
+                mouse_held = False
+    return
+
+################################### calling main
+if __name__ == "__main__":
+    main()
