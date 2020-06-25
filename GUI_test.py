@@ -36,6 +36,7 @@ GRAY = (128, 128, 128)
 # draw background
 space.fill(BLACK)
 
+
 # draw temporary sun in center of screen:
 pygame.draw.circle(space, YELLOW, (400, 300), 10)  # (drawLayer, color, (coordinates), radius)
 
@@ -93,24 +94,17 @@ b_timetravel_button = pygame.Rect(20, 540, 50, 50)
 pygame.draw.rect(space, GRAY, b_timetravel_button)
 b_timetravel_button_surface = game_font.render("  -  ", True, (0, 0, 0))
 space.blit(b_timetravel_button_surface, (20, 560))
+pygame.display.update()
 
 
 #################### draw window onto the screen
-pygame.display.update()
-
-#############################
-# functions
-def zoom_holding():
-    global mouse_held, zoom_level
-    if mouse_held:
-        _, zoom_level = pygame.mouse.get_pos()  # ignore x value of mouse coord, save y
-        return zoom_level
 
 
 #############################
 # main loop
 def main():
     while True:
+        drawUI()
         for event in pygame.event.get():
             # check for exit
             if event.type == QUIT:
