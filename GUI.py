@@ -102,7 +102,7 @@ pygame.display.update()
 
 ############################## celestial body object
 class Body(object):
-    def __init__(self, m, x, y, r, c):
+    def __init__(self, m, x, y, r, c, s):
         # mass, postion (x, y), color
         self.mass = m
         self.position = np.array([x, y])
@@ -111,6 +111,7 @@ class Body(object):
         self.accel = np.array([randint(-1,1), randint(-1,1)])
         self.color = c
         self.radius = r
+        self.sun = s
 
     def applyForce(self, force):
         # apply forces to a body
@@ -118,11 +119,12 @@ class Body(object):
         self.accel = np.add(self.accel, f)
 
     def update(self):
-        # update position based on velocity and reset accel
-        self.velocity = np.add(self.velocity, self.accel)
-        self.last_position = self.position
-        self.position = np.add(self.position, self.velocity)
-        self.accel = 0
+        if self.sun == False:
+            # update position based on velocity and reset accel if not sun
+            self.velocity = np.add(self.velocity, self.accel)
+            self.last_position = self.position
+            self.position = np.add(self.position, self.velocity)
+            self.accel = 0
 
     def display(self):
         # draw over old object location
@@ -150,13 +152,13 @@ class Body(object):
 ############################## set up and draw
 def setup():
     # sun
-    body1 = Body(1000, WIDTH/2, HEIGHT/2, 10, YELLOW)
+    body1 = Body(1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True)
 
     # planets
-    body2 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE)
-    body3 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE)
-    body4 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE)
-    body5 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE)
+    body2 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False)
+    body3 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False)
+    body4 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False)
+    body5 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False)
 
     # list of all bodies in universe
     global bodies
