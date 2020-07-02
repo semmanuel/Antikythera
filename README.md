@@ -31,4 +31,4 @@ Physics-based, simulation of the solar system.
 
 ## Acknowledgments
 
-*To be added...*
+- D. Shiffman, The Nature of the Code. [S.l.]: D. Shiffman, 2012.
