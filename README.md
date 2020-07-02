@@ -3,8 +3,10 @@
 Physics-based, simulation of the solar system.
 
 ## Program Structure
-- ``GUI.py`` - Code for user interface
-- ``Project Process Models/`` - Design models
+- ``main.py`` - Main program to run. Activates GUI and creates all Bodies solar system.
+- ``GUI.py`` - Class definition for User Interface, built with Pygame.
+- ``Body.py`` - Class definition of celestial bodies and physical simulations.
+- ``Project Process Models/`` - Design models.
 - ``practice/`` - Test builds for various components
 
 
