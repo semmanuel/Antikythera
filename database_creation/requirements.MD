@@ -1,12 +1,16 @@
 ## To install sqlalchemy
-Use conda or pip or adding from pycharm itself
+Use conda or pip or adding from pycharm itself:
+
 `conda install -c anaconda sqlalchemy`
+
 `pip install SQLAlchemy`
 
 
 ## To install pandas
-Use conda or pip or adding from pycharm itself
+Use conda or pip or adding from pycharm itself:
+
 `conda install -c anaconda pandas` 
+
 `pip install pandas`
 
 
