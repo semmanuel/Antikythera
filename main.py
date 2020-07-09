@@ -5,20 +5,10 @@
 
 ############################## file set up
 import sys, time
+import numpy as np
 from GUI import *
 from Body import *
 
-# global variables
-global trails_active
-global BLACK
-global WHITE
-global RED
-global GREEN
-global BLUE
-global YELLOW
-global GRAY
-global WIDTH
-global g
 
 # trails
 trails_active = False
@@ -42,17 +32,20 @@ GRAY = (128, 128, 128)
 ############################## set up and draw
 def setup():
     # sun
-    body1 = Body(1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space,trails_active)
+    # Body(mass, x-position, y-position, radius, color, sun, root, trails)
+    the_sun = Body('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active)
 
     # planets
-    body2 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
-    body3 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
-    body4 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
-    body5 = Body(randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    # Body(mass, x-position, y-position, radius, color, sun, root, trails)
+    earth = Body('Earth', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    mars = Body('Mars', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    mercury = Body('Mercury', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
+    venus = Body('Venus', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
+
 
     # list of all bodies in universe
     global bodies
-    bodies = [body1, body2, body3, body4, body5]
+    bodies = [the_sun, earth, mars, mercury, venus]
     return
 
 
@@ -134,6 +127,7 @@ if __name__ == "__main__":
                         else:
                             body.trails = True
 
+                # search object button
                 if gui.search_object_button.collidepoint(mouse_pos):
                     print('search1 pressed')
                 # search event button
@@ -161,7 +155,14 @@ if __name__ == "__main__":
                 # b time travel
                 if gui.b_timetravel_button.collidepoint(mouse_pos):
                     print('!levart emit sdrawkcab')
-
+            # hover
+            if event.type == pygame.MOUSEMOTION:
+                mouse_pos = np.array(event.pos)
+                #print("mouse:" + str(mouse_pos))
+                for body in bodies:
+                    #print(str(body.name) + ":" + str(body.position))
+                    if np.isclose(body.position, mouse_pos, atol=5).all():
+                        print("hovering over " + body.name)
         # update GUI and wait
         pygame.display.update()
         time.sleep(0.05)

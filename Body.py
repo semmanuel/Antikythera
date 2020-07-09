@@ -18,8 +18,9 @@ GRAY = (128, 128, 128)
 
 ############################## celestial body object
 class Body(object):
-    def __init__(self, m, x, y, r, c, s, root, tr):
+    def __init__(self, n, m, x, y, r, c, s, root, tr):
         # mass, postion (x, y), color
+        self.name = n
         self.mass = m
         self.position = np.array([x, y])
         self.last_position = np.array([x, y])
