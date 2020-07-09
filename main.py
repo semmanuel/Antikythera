@@ -104,8 +104,10 @@ if __name__ == "__main__":
     # initial set up
     setup()
     while True:
-        # render screen
-        draw()
+        # while pause not pressed, draw and update screen
+        if gui.pause == False:
+            # render screen
+            draw()
 
         # event handler
         for event in pygame.event.get():
@@ -119,7 +121,6 @@ if __name__ == "__main__":
 
                 # trails button
                 if gui.trails_button.collidepoint(mouse_pos):
-                    print("trails button pushed")
                     for body in bodies:
                         if body.trails == True:
                             body.trails = False
@@ -146,23 +147,28 @@ if __name__ == "__main__":
                # zoom bar
                 if gui.zoom_slider.collidepoint(mouse_pos):
                     print("zoom bar click")
+
                 # date pause/resume
                 if gui.date_button.collidepoint(mouse_pos):
-                    print('pause/resume time')
+                    gui.pause = not gui.pause
+
                 # f time travel
                 if gui.f_timetravel_button.collidepoint(mouse_pos):
                     print('forward time travel!')
                 # b time travel
                 if gui.b_timetravel_button.collidepoint(mouse_pos):
                     print('!levart emit sdrawkcab')
+
             # hover
             if event.type == pygame.MOUSEMOTION:
                 mouse_pos = np.array(event.pos)
                 #print("mouse:" + str(mouse_pos))
                 for body in bodies:
                     #print(str(body.name) + ":" + str(body.position))
-                    if np.isclose(body.position, mouse_pos, atol=5).all():
+                    # if mouse within certain distance (varied by atol)
+                    if np.isclose(body.position, mouse_pos, atol=10).all():
                         print("hovering over " + body.name)
+
         # update GUI and wait
         pygame.display.update()
         time.sleep(0.05)

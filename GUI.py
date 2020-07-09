@@ -25,6 +25,7 @@ class GUI(object):
         self.space = pygame.display.set_mode((WIDTH, HEIGHT))  # ((width, height))
         self.space.fill(BLACK)
 
+        self.pause = False
 
 
         ############################ CREATE and draw buttons first time
