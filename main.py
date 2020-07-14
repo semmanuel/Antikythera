@@ -60,38 +60,11 @@ def draw():
         body.update()
         body.display()
     ############################# RE-draw menu buttons
-    drawMenu()
+    gui.drawMenu()
     pygame.display.update()
     return
 
-def drawMenu():
-    # search objects
-    pygame.draw.rect(gui.space, GRAY, gui.search_object_button)
-    gui.space.blit(gui.search_object_button_surface, (40, 25))
-    # search events
-    pygame.draw.rect(gui.space, GRAY, gui.search_event_button)
-    gui.space.blit(gui.search_event_button_surface, (330, 25))
-    # calculate launch
-    pygame.draw.rect(gui.space, GRAY, gui.calc_launch_button)
-    gui.space.blit(gui.calc_launch_button_surface, (600, 25))
-    # trails activate/deactivate
-    pygame.draw.rect(gui.space, GRAY, gui.trails_button)
-    gui.space.blit(gui.trails_button_surface, (35, 85))
-    # exit button
-    pygame.draw.rect(gui.space, GRAY, gui.exit_button)
-    gui.space.blit(gui.exit_button_surface, (710, 560))
-    # zoom slider
-    pygame.draw.rect(gui.space, WHITE, gui.zoom_slider)
-    # date display
-    pygame.draw.rect(gui.space, GRAY, gui.date_button)
-    gui.space.blit(gui.date_button_surface, (180, 560))
-    # forward time travel
-    pygame.draw.rect(gui.space, GRAY, gui.f_timetravel_button)
-    gui.space.blit(gui.f_timetravel_button_surface, (420, 560))
-    # backward time travel
-    pygame.draw.rect(gui.space, GRAY, gui.b_timetravel_button)
-    gui.space.blit(gui.b_timetravel_button_surface, (20, 560))
-    return
+
 ############################## main loop
 
 
@@ -103,14 +76,16 @@ if __name__ == "__main__":
 
     gui = GUI(WIDTH, HEIGHT)
 
+    time_scale = 1
+
     # initial set up
     setup()
     while True:
         # while pause not pressed, draw and update screen
-        drawMenu()
+        gui.drawMenu()
         for body in bodies:
             body.display()
-            
+
         if gui.pause == False:
             # render screen
             draw()
@@ -150,10 +125,6 @@ if __name__ == "__main__":
                     pygame.quit()
                     sys.exit()
 
-               # zoom bar
-                if gui.zoom_slider.collidepoint(mouse_pos):
-                    print("zoom bar click")
-
                 # date pause/resume
                 if gui.date_button.collidepoint(mouse_pos):
                     gui.pause = not gui.pause
@@ -161,9 +132,12 @@ if __name__ == "__main__":
                 # f time travel
                 if gui.f_timetravel_button.collidepoint(mouse_pos):
                     print('forward time travel!')
+                    time_scale = time_scale / 1.25
+
                 # b time travel
                 if gui.b_timetravel_button.collidepoint(mouse_pos):
                     print('!levart emit sdrawkcab')
+                    time_scale = time_scale * 1.25
 
             # hover
             if event.type == pygame.MOUSEMOTION:
@@ -177,4 +151,4 @@ if __name__ == "__main__":
 
         # update GUI and wait
         pygame.display.update()
-        time.sleep(0.05)
+        time.sleep(0.05 * time_scale)
