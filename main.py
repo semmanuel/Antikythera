@@ -60,6 +60,11 @@ def draw():
         body.update()
         body.display()
     ############################# RE-draw menu buttons
+    drawMenu()
+    pygame.display.update()
+    return
+
+def drawMenu():
     # search objects
     pygame.draw.rect(gui.space, GRAY, gui.search_object_button)
     gui.space.blit(gui.search_object_button_surface, (40, 25))
@@ -86,10 +91,7 @@ def draw():
     # backward time travel
     pygame.draw.rect(gui.space, GRAY, gui.b_timetravel_button)
     gui.space.blit(gui.b_timetravel_button_surface, (20, 560))
-    pygame.display.update()
     return
-
-
 ############################## main loop
 
 
@@ -105,6 +107,10 @@ if __name__ == "__main__":
     setup()
     while True:
         # while pause not pressed, draw and update screen
+        drawMenu()
+        for body in bodies:
+            body.display()
+            
         if gui.pause == False:
             # render screen
             draw()

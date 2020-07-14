@@ -23,9 +23,9 @@ class Body(object):
         self.name = n
         self.mass = m
         self.position = np.array([x, y])
-        self.last_position = np.array([x, y])
-        self.velocity = np.array([randint(-10,10), randint(-10,10)])
-        self.accel = np.array([randint(-1,1), randint(-1,1)])
+        self.last_position = np.array([x-1, y-1])
+        self.velocity = np.array([randint(10,15), randint(10,15)])
+        self.accel = np.array([0,0])
         self.color = c
         self.radius = r
         self.sun = s
