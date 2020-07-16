@@ -40,4 +40,12 @@ asteroid.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 asteroid= read_csv("orbits.csv", encoding="ISO-8859-1")
 sqlite_table = "Asteroid Orbits"
 asteroid.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
+
+#Celestial Objects ~ Planets
+comets= read_csv("planets.csv", encoding="ISO-8859-1")
+
+engine = create_engine('sqlite:///celestial_objects.db', echo=True)
+sqlite_connection = engine.connect()
+sqlite_table = "Planets"
+comets.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 sqlite_connection.close()
