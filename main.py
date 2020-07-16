@@ -65,13 +65,84 @@ def draw():
     return
 
 
+############################## menu printing
+#### search events
+def searchEventMenu():
+    running = True
+    while (running):
+        print("===========================================")
+        print(" SEARCH DATABASE FOR CELESTIAL EVENTS")
+        print("===========================================")
+        print(" [ 1 ] to to Search for Event Type A")
+        print(" [ 2 ] to to Search for Event Type B")
+        print(" [ 3 ] to to Search for Event Type C")
+        print(" [ 4 ] to to Search for Event Type D")
+        print(" [ 0 ] to Exit Search Menu")
+        print("===========================================")
+        eventSelect = int(input())
+        if eventSelect == 0:
+            print("Exiting....\n\n")
+            running = False
+            break
+        elif eventSelect == 1:
+            # search and print results\
+            print("Searching...\n\n")
+        elif eventSelect == 2:
+            # search and print results\
+            print("Searching...\n\n")
+        elif eventSelect == 3:
+            # search and print results\
+            print("Searching...\n\n")
+        elif eventSelect == 4:
+            # search and print results\
+            print("Searching...\n\n")
+        else:
+            print("ERROR....\n\n")
+    return
+
+
+#### search celestial bodies
+def searchBodyMenu():
+    running = True
+    while (running):
+        print("===========================================")
+        print(" SEARCH DATABASE FOR CELESTIAL BODIES")
+        print("===========================================")
+        print(" [ 1 ] to to Search for Body Type A")
+        print(" [ 2 ] to to Search for Body Type B")
+        print(" [ 3 ] to to Search for Body Type C")
+        print(" [ 4 ] to to Search for Body Type D")
+        print(" [ 0 ] to Exit Search Menu")
+        print("===========================================")
+        eventSelect = int(input())
+        if eventSelect == 0:
+            print("Exiting....\n\n")
+            running = False
+            break
+        elif eventSelect == 1:
+            # search and print results\
+            print("Searching...\n\n")
+        elif eventSelect == 2:
+            # search and print results\
+            print("Searching...\n\n")
+        elif eventSelect == 3:
+            # search and print results\
+            print("Searching...\n\n")
+        elif eventSelect == 4:
+            # search and print results\
+            print("Searching...\n\n")
+        else:
+            print("ERROR....\n\n")
+    return
+
+
 ############################## main loop
 
 
 if __name__ == "__main__":
     # initiate pygame and clock
     pygame.init()
-    pygame.display.set_caption('antikythera pre-alpha')
+    pygame.display.set_caption('antikythera alpha')
     clock = pygame.time.Clock()
 
     gui = GUI(WIDTH, HEIGHT)
@@ -111,10 +182,12 @@ if __name__ == "__main__":
 
                 # search object button
                 if gui.search_object_button.collidepoint(mouse_pos):
-                    print('search1 pressed')
+                    searchBodyMenu()
+
                 # search event button
                 if gui.search_event_button.collidepoint(mouse_pos):
-                    print('search2 pressed')
+                    searchEventMenu()
+
                 # calculate launch button
                 if gui.calc_launch_button.collidepoint(mouse_pos):
                     print('calculate transfer pressed')
@@ -131,21 +204,17 @@ if __name__ == "__main__":
 
                 # f time travel
                 if gui.f_timetravel_button.collidepoint(mouse_pos):
-                    print('forward time travel!')
                     time_scale = time_scale / 1.25
 
                 # b time travel
                 if gui.b_timetravel_button.collidepoint(mouse_pos):
-                    print('!levart emit sdrawkcab')
                     time_scale = time_scale * 1.25
 
             # hover
             if event.type == pygame.MOUSEMOTION:
                 mouse_pos = np.array(event.pos)
-                #print("mouse:" + str(mouse_pos))
                 for body in bodies:
-                    #print(str(body.name) + ":" + str(body.position))
-                    # if mouse within certain distance (varied by atol)
+                    # if mouse within certain distance (varied by atol), print body name to console
                     if np.isclose(body.position, mouse_pos, atol=10).all():
                         print("hovering over " + body.name)
 
