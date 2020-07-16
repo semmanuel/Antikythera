@@ -12,13 +12,24 @@ comets.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 
 sqlite_connection.close()
 '''
-
-meteorites= read_csv("near-earth-comets_1.csv", encoding="ISO-8859-1")
+#Meteor Table
+meteorites= read_csv("near-earth-comets.csv", encoding="ISO-8859-1")
 
 engine = create_engine('sqlite:///meteorites.db', echo=True)
 sqlite_connection = engine.connect()
 sqlite_table = "METEORITES"
 meteorites.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 
+#Eclipses Relation
+lunareclipse= read_csv("lunar.csv", encoding="ISO-8859-1")
+
+engine = create_engine('sqlite:///eclipses.db', echo=True)
+sqlite_connection = engine.connect()
+sqlite_table = "Lunar Eclipse"
+lunareclipse.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
+
+solareclipse= read_csv("lunar.csv", encoding="ISO-8859-1")
+sqlite_table = "Solar Eclipse"
+solareclipse.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 
 sqlite_connection.close()
