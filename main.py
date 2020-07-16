@@ -216,7 +216,7 @@ if __name__ == "__main__":
                 for body in bodies:
                     # if mouse within certain distance (varied by atol), print body name to console
                     if np.isclose(body.position, mouse_pos, atol=10).all():
-                        print("hovering over " + body.name)
+                        body.printData()
 
         # update GUI and wait
         pygame.display.update()

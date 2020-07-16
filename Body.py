@@ -67,6 +67,19 @@ class Body(object):
         force = force * strength
         return force
 
+
+    def printData(self):
+        print("\n\n\n===============================")
+        print("Name: " + self.name)
+        print("Mass: " + str(self.mass))
+        print("Position: " + str(self.position))
+        print("Velocity: " + str(self.velocity))
+        print("Distance from Sun: ...")
+        print("Other data: ...")
+        print("===============================")
+        return
+
+
 ############################## mathematical functions
 
 def constrain(val, min_val, max_val):
