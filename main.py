@@ -5,7 +5,6 @@
 
 ############################## file set up
 import sys, time
-import numpy as np
 from GUI import *
 from Body import *
 
@@ -17,8 +16,8 @@ trails_active = False
 g = 0.4
 
 # dimensions
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1600
+HEIGHT = 800
 
 # set up colors:
 BLACK = (0, 0, 0)
@@ -36,16 +35,19 @@ def setup():
     the_sun = Body('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active)
 
     # planets
-    # Body(mass, x-position, y-position, radius, color, sun, root, trails)
-    earth = Body('Earth', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
-    mars = Body('Mars', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    # Body(name, mass, x-position, y-position, radius, color, sun, root, trails)
     mercury = Body('Mercury', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
-    venus = Body('Venus', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
-
+    venus = Body('Venus', randint(10, 20), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
+    earth = Body('Earth', randint(20, 30), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    mars = Body('Mars', randint(30, 40), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    jupiter = Body('Venus', randint(40, 50), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
+    saturn = Body('Venus', randint(50, 60), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
+    uranus = Body('Venus', randint(60, 70), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    neptune = Body('Venus', randint(70, 90), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
 
     # list of all bodies in universe
     global bodies
-    bodies = [the_sun, earth, mars, mercury, venus]
+    bodies = [the_sun, earth, mars, mercury, venus, jupiter, saturn, uranus, neptune]
     return
 
 
@@ -73,10 +75,10 @@ def searchEventMenu():
         print("===========================================")
         print(" SEARCH DATABASE FOR CELESTIAL EVENTS")
         print("===========================================")
-        print(" [ 1 ] to to Search for Event Type A")
-        print(" [ 2 ] to to Search for Event Type B")
-        print(" [ 3 ] to to Search for Event Type C")
-        print(" [ 4 ] to to Search for Event Type D")
+        print(" [ 1 ] to Search for Event Type A")
+        print(" [ 2 ] to Search for Event Type B")
+        print(" [ 3 ] to Search for Event Type C")
+        print(" [ 4 ] to Search for Event Type D")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
         eventSelect = int(input())
@@ -108,10 +110,10 @@ def searchBodyMenu():
         print("===========================================")
         print(" SEARCH DATABASE FOR CELESTIAL BODIES")
         print("===========================================")
-        print(" [ 1 ] to to Search for Body Type A")
-        print(" [ 2 ] to to Search for Body Type B")
-        print(" [ 3 ] to to Search for Body Type C")
-        print(" [ 4 ] to to Search for Body Type D")
+        print(" [ 1 ] to Search for Body Type A")
+        print(" [ 2 ] to Search for Body Type B")
+        print(" [ 3 ] to Search for Body Type C")
+        print(" [ 4 ] to Search for Body Type D")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
         eventSelect = int(input())

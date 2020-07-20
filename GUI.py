@@ -34,11 +34,11 @@ class GUI(object):
         self.search_object_button_surface = self.game_font.render('SEARCH OBJECTS', True, (0, 0, 0))  # ('text', anti-alias, (color)))
 
         # search events
-        self.search_event_button = pygame.Rect(300, 10, 200, 50)
+        self.search_event_button = pygame.Rect(600, 10, 200, 50)
         self.search_event_button_surface = self.game_font.render('SEARCH EVENTS', True, (0, 0, 0))
 
         # calculate launch
-        self.calc_launch_button = pygame.Rect(590, 10, 200, 50)
+        self.calc_launch_button = pygame.Rect(1290, 10, 200, 50)
         self.calc_launch_button_surface = self.game_font.render('CALCULATE LAUNCH', True, (0, 0, 0))
 
         # trails activate/deactivate
@@ -46,22 +46,20 @@ class GUI(object):
         self.trails_button_surface = self.game_font.render('TRAILS', True, (0, 0, 0))
 
         # exit button
-        self.exit_button = pygame.Rect(690, 540, 100, 50)
+        self.exit_button = pygame.Rect(1390, 740, 100, 50)
         self.exit_button_surface = self.game_font.render('EXIT', True, (0, 0, 0))
 
 
         # date display
-        self.today = date.today()
-        self.current_date = self.today.strftime("%b-%d-%Y")  # current date
-        self.date_button = pygame.Rect(95, 540, 300, 50)
-        self.date_button_surface = self.game_font.render(self.current_date, True, (0, 0, 0))
+        self.date_button = pygame.Rect(95, 740, 300, 50)
+        self.date_button_surface = self.game_font.render('PAUSE', True, (0, 0, 0))
 
         # forward time travel
-        self. f_timetravel_button = pygame.Rect(420, 540, 50, 50)
+        self. f_timetravel_button = pygame.Rect(420, 740, 50, 50)
         self.f_timetravel_button_surface = self.game_font.render("  +  ", True, (0, 0, 0))
 
         # backward time travel
-        self.b_timetravel_button = pygame.Rect(20, 540, 50, 50)
+        self.b_timetravel_button = pygame.Rect(20, 740, 50, 50)
         self.b_timetravel_button_surface = self.game_font.render("  -  ", True, (0, 0, 0))
 
         self.drawMenu()
@@ -73,25 +71,25 @@ class GUI(object):
         self.space.blit(self.search_object_button_surface, (40, 25))
         # search events
         pygame.draw.rect(self.space, GRAY, self.search_event_button)
-        self.space.blit(self.search_event_button_surface, (330, 25))
+        self.space.blit(self.search_event_button_surface, (630, 25))
         # calculate launch
         pygame.draw.rect(self.space, GRAY, self.calc_launch_button)
-        self.space.blit(self.calc_launch_button_surface, (600, 25))
+        self.space.blit(self.calc_launch_button_surface, (1310, 25))
         # trails activate/deactivate
         pygame.draw.rect(self.space, GRAY, self.trails_button)
         self.space.blit(self.trails_button_surface, (35, 85))
         # exit button
         pygame.draw.rect(self.space, GRAY, self.exit_button)
-        self.space.blit(self.exit_button_surface, (710, 560))
+        self.space.blit(self.exit_button_surface, (1400, 760))
         # date display
         pygame.draw.rect(self.space, GRAY, self.date_button)
-        self.space.blit(self.date_button_surface, (180, 560))
+        self.space.blit(self.date_button_surface, (180, 760))
         # forward time travel
         pygame.draw.rect(self.space, GRAY, self.f_timetravel_button)
-        self.space.blit(self.f_timetravel_button_surface, (420, 560))
+        self.space.blit(self.f_timetravel_button_surface, (420, 760))
         # backward time travel
         pygame.draw.rect(self.space, GRAY, self.b_timetravel_button)
-        self.space.blit(self.b_timetravel_button_surface, (20, 560))
+        self.space.blit(self.b_timetravel_button_surface, (20, 760))
         return
 
 
