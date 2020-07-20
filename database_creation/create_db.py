@@ -31,7 +31,12 @@ asteroid_orbits.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 planets= read_csv("planets.csv", encoding="ISO-8859-1")
 engine = create_engine('sqlite:///celestial_objects.db', echo=True)
 sqlite_connection = engine.connect()
+sqlite_table = "Planets"
 planets.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
+#Comets
+comets= read_csv("near-earth-comets.csv", encoding="ISO-8859-1")
+sqlite_table = "Comets"
+comets.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
 
 #Stars, but for now populated by the Sun only
 stars=read_csv("stars.csv",encoding="ISO-8859-1")
