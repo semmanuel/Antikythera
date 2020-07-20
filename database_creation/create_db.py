@@ -48,4 +48,12 @@ engine = create_engine('sqlite:///celestial_objects.db', echo=True)
 sqlite_connection = engine.connect()
 sqlite_table = "Planets"
 comets.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
+
+#Stars, but for now populated by the Sun only
+stars=read_csv("stars.csv",encoding="ISO-8859-1")
+engine=create_engine('sqlite:///Stars.db', echo=True)
+sqlite_table = "Stars"
+sqlite_connection = engine.connect()
+stars.to_sql(sqlite_table, sqlite_connection, if_exists='fail')
+
 sqlite_connection.close()
