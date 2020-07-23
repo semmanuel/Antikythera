@@ -10,7 +10,7 @@ Physics-based, simulation of the solar system.
 - ``practice/`` - Test builds for various components
 
 ## Requirements
-- pycharm(Preferred)
+- pycharm(Preferred IDE)
 - python3
 ###### Modules
 - pygames
@@ -19,6 +19,8 @@ Physics-based, simulation of the solar system.
 - sqlalchemy
 
 ## Installation Set Up
+*PyCharm allows you to easily install modules through settings* ``+``.
+
 Use the package manager [pip](https://pip.pypa.io/en/stable/) from command line to install all modules.
 ```bash
 pip install pygames
