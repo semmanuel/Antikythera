@@ -10,13 +10,13 @@ Physics-based, simulation of the solar system.
 - ``practice/`` - Test builds for various components
 
 ## Requirements
-- pycharm(Preferred IDE)
-- python3
+- PyCharm(Preferred IDE)
+- Python3
 ###### Modules
-- pygames
-- numpy
-- sqlite3
-- sqlalchemy
+- Pygames
+- Numpy
+- Sqlite3
+- Sqlalchemy
 
 ## Installation Set Up
 *PyCharm allows you to easily install modules through settings* ``+``.
