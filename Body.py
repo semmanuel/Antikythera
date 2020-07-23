@@ -7,8 +7,11 @@ import math
 import pygame
 from random import *
 import numpy as np
+from database_creation.database_antikythera import *
 
 # set up colors:
+
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -18,7 +21,7 @@ YELLOW = (255, 255, 0)
 GRAY = (128, 128, 128)
 
 ############################## celestial body object
-class Body(object):
+class Body(object,Planet):
     def __init__(self, n, m, x, y, r, c, s, root, tr):
         # mass, postion (x, y), color
         self.name = n
@@ -33,6 +36,7 @@ class Body(object):
         self.surface = root
         self.trails = tr
         self.sunDistance = math.sqrt((self.position[0] - 400)**2 + (self.position[1] - 300)**2)
+
 
     def applyForce(self, force):
         # apply forces to a body

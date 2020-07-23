@@ -36,206 +36,40 @@ class Planet:
 '''Create each planet'''
 database = sqlite3.connect("celestial_objects.db")
 cursor=database.cursor()
-cursor.execute("""SELECT * FROM CELESTIAL_OBJECTS;"""  )
-query_result = cursor.fetchall()
+def querying(planet:str):
+  cursor.execute("""SELECT * FROM CELESTIAL_OBJECTS 
+  WHERE PLANET= ?;""",(planet,))
+  query_result = cursor.fetchone()
+  return Planet (query_result[2],
+                query_result[3],
+                query_result[4],
+                query_result[5],
+                query_result[6],
+                query_result[7],
+                query_result[8],
+                query_result[9],
+                query_result[10],
+                query_result[11],
+                query_result[12],
+                query_result[13],
+                query_result[14],
+                query_result[15],
+                query_result[16],
+                query_result[17],
+                query_result[18],
+                query_result[19],
+                query_result[20],
+                query_result[21])
 
-for i in range(8):
-  if i==0:
-    mercury = Planet (query_result[i][2],
-                      query_result[i][3],
-                      query_result[i][4],
-                      query_result[i][5],
-                      query_result[i][6],
-                      query_result[i][7],
-                      query_result[i][8],
-                      query_result[i][9],
-                      query_result[i][10],
-                      query_result[i][11],
-                      query_result[i][12],
-                      query_result[i][13],
-                      query_result[i][14],
-                      query_result[i][15],
-                      query_result[i][16],
-                      query_result[i][17],
-                      query_result[i][18],
-                      query_result[i][19],
-                      query_result[i][20],
-                      query_result[i][21])
-  elif i==1:
-    venus = Planet (query_result[i][2],
-                    query_result[i][3],
-                    query_result[i][4],
-                    query_result[i][5],
-                    query_result[i][6],
-                    query_result[i][7],
-                    query_result[i][8],
-                    query_result[i][9],
-                    query_result[i][10],
-                    query_result[i][11],
-                    query_result[i][12],
-                    query_result[i][13],
-                    query_result[i][14],
-                    query_result[i][15],
-                    query_result[i][16],
-                    query_result[i][17],
-                    query_result[i][18],
-                    query_result[i][19],
-                    query_result[i][20],
-                    query_result[i][21])
-
-  elif i==2:
-    earth = Planet (query_result[i][2],
-                    query_result[i][3],
-                    query_result[i][4],
-                    query_result[i][5],
-                    query_result[i][6],
-                    query_result[i][7],
-                    query_result[i][8],
-                    query_result[i][9],
-                    query_result[i][10],
-                    query_result[i][11],
-                    query_result[i][12],
-                    query_result[i][13],
-                    query_result[i][14],
-                    query_result[i][15],
-                    query_result[i][16],
-                    query_result[i][17],
-                    query_result[i][18],
-                    query_result[i][19],
-                    query_result[i][20],
-                    query_result[i][21])
-
-  elif i==3:
-    mars = Planet (query_result[i][2],
-                  query_result[i][3],
-                  query_result[i][4],
-                  query_result[i][5],
-                  query_result[i][6],
-                  query_result[i][7],
-                  query_result[i][8],
-                  query_result[i][9],
-                  query_result[i][10],
-                  query_result[i][11],
-                  query_result[i][12],
-                  query_result[i][13],
-                  query_result[i][14],
-                  query_result[i][15],
-                  query_result[i][16],
-                  query_result[i][17],
-                  query_result[i][18],
-                  query_result[i][19],
-                  query_result[i][20],
-                  query_result[i][21])
-
-
-  elif i==4:
-    jupiter = Planet (query_result[i][2],
-                      query_result[i][3],
-                      query_result[i][4],
-                      query_result[i][5],
-                      query_result[i][6],
-                      query_result[i][7],
-                      query_result[i][8],
-                      query_result[i][9],
-                      query_result[i][10],
-                      query_result[i][11],
-                      query_result[i][12],
-                      query_result[i][13],
-                      query_result[i][14],
-                      query_result[i][15],
-                      query_result[i][16],
-                      query_result[i][17],
-                      query_result[i][18],
-                      query_result[i][19],
-                      query_result[i][20],
-                      query_result[i][21])
-
-  elif i==5:
-    saturn = Planet (query_result[i][2],
-                    query_result[i][3],
-                    query_result[i][4],
-                    query_result[i][5],
-                    query_result[i][6],
-                    query_result[i][7],
-                    query_result[i][8],
-                    query_result[i][9],
-                    query_result[i][10],
-                    query_result[i][11],
-                    query_result[i][12],
-                    query_result[i][13],
-                    query_result[i][14],
-                    query_result[i][15],
-                    query_result[i][16],
-                    query_result[i][17],
-                    query_result[i][18],
-                    query_result[i][19],
-                    query_result[i][20],
-                    query_result[i][21])
-
-  elif i==6:
-    uranus = Planet (query_result[i][2],
-                    query_result[i][3],
-                    query_result[i][4],
-                    query_result[i][5],
-                    query_result[i][6],
-                    query_result[i][7],
-                    query_result[i][8],
-                    query_result[i][9],
-                    query_result[i][10],
-                    query_result[i][11],
-                    query_result[i][12],
-                    query_result[i][13],
-                    query_result[i][14],
-                    query_result[i][15],
-                    query_result[i][16],
-                    query_result[i][17],
-                    query_result[i][18],
-                    query_result[i][19],
-                    query_result[i][20],
-                    query_result[i][21])
-  elif i==7:
-    neptune = Planet (query_result[i][2],
-                      query_result[i][3],
-                      query_result[i][4],
-                      query_result[i][5],
-                      query_result[i][6],
-                      query_result[i][7],
-                      query_result[i][8],
-                      query_result[i][9],
-                      query_result[i][10],
-                      query_result[i][11],
-                      query_result[i][12],
-                      query_result[i][13],
-                      query_result[i][14],
-                      query_result[i][15],
-                      query_result[i][16],
-                      query_result[i][17],
-                      query_result[i][18],
-                      query_result[i][19],
-                      query_result[i][20],
-                      query_result[i][21])
-  elif i==8:
-    pluto = Planet (query_result[i][2],
-                    query_result[i][3],
-                    query_result[i][4],
-                    query_result[i][5],
-                    query_result[i][6],
-                    query_result[i][7],
-                    query_result[i][8],
-                    query_result[i][9],
-                    query_result[i][10],
-                    query_result[i][11],
-                    query_result[i][12],
-                    query_result[i][13],
-                    query_result[i][14],
-                    query_result[i][15],
-                    query_result[i][16],
-                    query_result[i][17],
-                    query_result[i][18],
-                    query_result[i][19],
-                    query_result[i][20],
-                    query_result[i][21])
-
+mercury=querying ('Mercury')
+venus=querying   ('Venus')
+earth=querying   ('Earth')
+mars=querying    ('Mars')
+jupiter=querying ('Jupiter')
+saturn=querying  ('Saturn')
+neptune= querying('Neptune')
+uranus=querying  ('Uranus')
+pluto=querying   ('Pluto')
 #create the sun class
 
 

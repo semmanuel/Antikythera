@@ -3,3 +3,4 @@ notes.txt
 project/
 concept/
 __pycache__/*
+.db
