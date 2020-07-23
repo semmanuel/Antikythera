@@ -17,6 +17,9 @@ from Transferwindow import *
 database = sqlite3.connect('celestial_objects.db')
 cursor = database.cursor()
 
+database1 = sqlite3.connect('Stars.db')
+cursor1 = database1.cursor()
+
 
 # trails
 trails_active = False
@@ -119,9 +122,9 @@ def searchBodyMenu():
         print("===========================================")
         print(" SEARCH DATABASE FOR CELESTIAL BODIES")
         print("===========================================")
-        print(" [ 1 ] to Search for Body Type A")
-        print(" [ 2 ] to Search for Body Type B")
-        print(" [ 3 ] to Search for Body Type C")
+        print(" [ 1 ] to Search for Planets")
+        print(" [ 2 ] to Search for Stars")
+        print(" [ 3 ] to Search for Comets")
         print(" [ 4 ] to Search for Body Type D")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
@@ -132,10 +135,18 @@ def searchBodyMenu():
             break
         elif eventSelect == 1:
             # search and print results\
-            print("Searching...\n\n")
+            cursor.execute("""SELECT planet from Planets""")
+            query_result = [row[0] for row in cursor.fetchall()]
+            for i in query_result:
+                print(i)
+
         elif eventSelect == 2:
             # search and print results\
-            print("Searching...\n\n")
+            cursor1.execute("""SELECT Star from Stars WHERE Star != 'None'""")
+            query_result = [row[0] for row in cursor1.fetchall()]
+            for i in query_result:
+                print(i)
+
         elif eventSelect == 3:
             # search and print results\
             print("Searching...\n\n")
