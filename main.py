@@ -9,6 +9,10 @@ import numpy as np
 from GUI import *
 from Body import *
 
+############ database set up
+database = sqlite3.connect('celestial_objects.db')
+cursor = database.cursor()
+
 
 # trails
 trails_active = False
