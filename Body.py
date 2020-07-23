@@ -3,6 +3,7 @@
 # Class file for the celestial bodies.
 #
 
+import math
 import pygame
 from random import *
 import numpy as np
@@ -31,6 +32,7 @@ class Body(object):
         self.sun = s
         self.surface = root
         self.trails = tr
+        self.sunDistance = math.sqrt((self.position[0] - 400)**2 + (self.position[1] - 300)**2)
 
     def applyForce(self, force):
         # apply forces to a body
@@ -43,6 +45,7 @@ class Body(object):
             self.velocity = np.add(self.velocity, self.accel)
             self.last_position = self.position
             self.position = np.add(self.position, self.velocity)
+            self.sunDistance = math.sqrt((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
             self.accel = 0
 
     def display(self):
@@ -74,10 +77,40 @@ class Body(object):
         print("Mass: " + str(self.mass))
         print("Position: " + str(self.position))
         print("Velocity: " + str(self.velocity))
-        print("Distance from Sun: ...")
+        print("Distance from Sun: " + str(self.sunDistance))
         print("Other data: ...")
         print("===============================")
         return
+
+    def eclipseCheck(self, body2):
+         if self.sunDistance > body2.sunDistance:
+             cross = (body2.position[1] - 300)*(self.position[0] - 400) - (body2.position[0] - 400)*(self.position[1] - 300)
+             if math.isclose(cross, 0, abs_tol=1):
+                 return True
+             dot = np.dot(self.position, body2.position)
+             if dot < 0:
+                 return False
+             squaredLength = ((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
+             if dot > squaredLength:
+                 return False
+             return True
+         else:
+            cross = (self.position[1] - 300) * (body2.position[0] - 400) - (self.position[0] - 400) * (body2.position[1] - 300)
+            if math.isclose(cross, 0, abs_tol=1):
+                return True
+            dot = np.dot(self.position, body2.position)
+            if dot < 0:
+                return False
+            squaredLength = ((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
+            if dot > squaredLength:
+                return False
+            return True
+    def eclipseCheck2(self, body2):
+        selfBodyDist = math.sqrt((self.position[0] - body2.position[0]) ** 2 + (self.position[1] - body2.position[1]) ** 2)
+        if self.sunDistance > body2.sunDistance:
+            return math.isclose(selfBodyDist + body2.sunDistance, self.sunDistance)
+        else:
+            return math.isclose(selfBodyDist + body2.sunDistance, body2.sunDistance)
 
 
 ############################## mathematical functions
