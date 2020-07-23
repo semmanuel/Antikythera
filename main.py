@@ -5,6 +5,7 @@
 
 ############################## file set up
 import sys, time
+import sqlite3
 import numpy as np
 from GUI import *
 from Body import *
