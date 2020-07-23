@@ -9,6 +9,22 @@ Physics-based, simulation of the solar system.
 - ``Project Process Models/`` - Design models.
 - ``practice/`` - Test builds for various components
 
+## Requirements
+- pygames
+- numpy
+- sqlite3
+- sqlalchemy
+
+## Installation Set Up
+PyCharm is the preferable IDE of choice for this project.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) from command line to install all modules.
+(Python3 must also be installed)
+```bash
+pip install pygames
+pip install numpy
+pip install sqlite3
+pip install sqlalchemy
+```
 
 ## Features
 - 1
