@@ -53,5 +53,3 @@ def transferwindow(r1,r2,p1,p2):
     print('TOF in days: ', TOF , '\nTOF in months: ', TOF_months, '\nTOF in years: ', TOF_years)
 
 
-
-transferwindow(149600000, 57910000, 365.25636, 87.66144)
