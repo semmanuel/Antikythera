@@ -10,26 +10,28 @@ Physics-based, simulation of the solar system.
 - ``practice/`` - Test builds for various components
 
 ## Requirements
+- pycharm(Preferred)
+- python3
+###### Modules
 - pygames
 - numpy
 - sqlite3
 - sqlalchemy
 
 ## Installation Set Up
-PyCharm is the preferable IDE of choice for this project.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) from command line to install all modules.
-(Python3 must also be installed)
 ```bash
 pip install pygames
 pip install numpy
 pip install sqlite3
 pip install sqlalchemy
 ```
+*PyCharm allows you to install modules through the settings*
 
 ## Features
-- 1
-- 2
-- 3
+- GUI of Solar System
+- Search Celestial Objects(e.g Planets)
+- Search Celestial Events(e.g Lunar Eclipse)
 
 ## Authors
 * [**Brandon Merluzzo**](https://github.com/mishakh) - merluzzob@wit.edu
