@@ -135,6 +135,29 @@ def searchBodyMenu():
             print("ERROR....\n\n")
     return
 
+def searchTransferwindow():
+
+    Object1 = input('Enter the origin planet: ')
+    Object2 = input('Enter the destination planet: ')
+
+    ##### Getting the required information from the database
+    cursor.execute("""SELECT distance_from_sun FROM Planets WHERE planet = '%s'""" % Object1)
+    object1 = [row[0] for row in cursor.fetchall()]
+    distance1 = float(object1[0])
+
+    cursor.execute("""SELECT distance_from_sun FROM Planets WHERE planet = '%s'""" % Object2)
+    object2 = [row[0] for row in cursor.fetchall()]
+    distance2 = float(object2[0])
+
+    cursor.execute("""SELECT orbital_period FROM Planets WHERE planet = '%s'""" % Object1)
+    object1 = [row[0] for row in cursor.fetchall()]
+    orbital1 = object1[0]
+
+    cursor.execute("""SELECT orbital_period FROM Planets WHERE planet = '%s'""" % Object2)
+    object2 = [row[0] for row in cursor.fetchall()]
+    orbital2 = object2[0]
+
+    transferwindow(distance1 * 10 ** 6, distance2 * 10 ** 6, orbital1, orbital2)
 
 ############################## main loop
 
@@ -190,7 +213,7 @@ if __name__ == "__main__":
 
                 # calculate launch button
                 if gui.calc_launch_button.collidepoint(mouse_pos):
-                    print('calculate transfer pressed')
+                    searchTransferwindow()
 
                 # exit button
                 if gui.exit_button.collidepoint(mouse_pos):
