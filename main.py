@@ -10,6 +10,8 @@ import sqlite3
 import numpy as np
 from GUI import *
 from Body import *
+import sqlite3
+from Transferwindow import *
 
 ############ database set up
 database = sqlite3.connect('celestial_objects.db')
