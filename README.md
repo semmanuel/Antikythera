@@ -21,14 +21,13 @@ Physics-based, simulation of the solar system.
 ## Installation Set Up
 *PyCharm allows you to easily install modules through settings* ``+``.
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) from command line to install all modules.
+You can also use the package manager [pip](https://pip.pypa.io/en/stable/) from command line to install all modules.
 ```bash
 pip install pygames
 pip install numpy
 pip install sqlite3
 pip install sqlalchemy
 ```
-*PyCharm allows you to install modules through the settings*
 
 ## Features
 - GUI of Solar System
