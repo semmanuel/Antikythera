@@ -40,10 +40,10 @@ def setup():
     venus = Body('Venus', randint(10, 20), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
     earth = Body('Earth', randint(20, 30), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
     mars = Body('Mars', randint(30, 40), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
-    jupiter = Body('Venus', randint(40, 50), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
-    saturn = Body('Venus', randint(50, 60), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
-    uranus = Body('Venus', randint(60, 70), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
-    neptune = Body('Venus', randint(70, 90), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    jupiter = Body('Jupiter', randint(40, 50), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
+    saturn = Body('Saturn', randint(50, 60), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
+    uranus = Body('Uranus', randint(60, 70), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    neptune = Body('Neptune', randint(70, 90), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
 
     # list of all bodies in universe
     global bodies

@@ -69,7 +69,7 @@ class Body(object):
 
 
     def printData(self):
-        print("\n\n\n===============================")
+        print("\n\n\n\n\n===============================")
         print("Name: " + self.name)
         print("Mass: " + str(self.mass))
         print("Position: " + str(self.position))
