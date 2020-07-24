@@ -135,7 +135,7 @@ def searchBodyMenu():
             break
         elif eventSelect == 1:
             # search and print results\
-            cursor.execute("""SELECT planet from Planets""")
+            cursor.execute("""SELECT planet from celestial_objects""")
             query_result = [row[0] for row in cursor.fetchall()]
             for i in query_result:
                 print(i)
@@ -163,19 +163,19 @@ def searchTransferwindow():
     Object2 = input('Enter the destination planet: ')
 
     ##### Getting the required information from the database
-    cursor.execute("""SELECT distance_from_sun FROM Planets WHERE planet = '%s'""" % Object1)
+    cursor.execute("""SELECT distance_from_sun FROM celestial_objects WHERE planet = '%s'""" % Object1)
     object1 = [row[0] for row in cursor.fetchall()]
     distance1 = float(object1[0])
 
-    cursor.execute("""SELECT distance_from_sun FROM Planets WHERE planet = '%s'""" % Object2)
+    cursor.execute("""SELECT distance_from_sun FROM celestial_objects WHERE planet = '%s'""" % Object2)
     object2 = [row[0] for row in cursor.fetchall()]
     distance2 = float(object2[0])
 
-    cursor.execute("""SELECT orbital_period FROM Planets WHERE planet = '%s'""" % Object1)
+    cursor.execute("""SELECT orbital_period FROM celestial_objects WHERE planet = '%s'""" % Object1)
     object1 = [row[0] for row in cursor.fetchall()]
     orbital1 = object1[0]
 
-    cursor.execute("""SELECT orbital_period FROM Planets WHERE planet = '%s'""" % Object2)
+    cursor.execute("""SELECT orbital_period FROM celestial_objects WHERE planet = '%s'""" % Object2)
     object2 = [row[0] for row in cursor.fetchall()]
     orbital2 = object2[0]
 
