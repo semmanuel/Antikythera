@@ -21,7 +21,7 @@ YELLOW = (255, 255, 0)
 GRAY = (128, 128, 128)
 
 ############################## celestial body object
-class Body(object,Planet):
+class Body(object):
     def __init__(self, n, m, x, y, r, c, s, root, tr):
         # mass, postion (x, y), color
         self.name = n
