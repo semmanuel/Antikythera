@@ -76,14 +76,21 @@ class Body(object):
 
 
     def printData(self):
-        print("\n\n\n\n\n===============================")
-        print("Name: " + self.name)
-        print("Mass: " + str(self.mass))
-        print("Position: " + str(self.position))
-        print("Velocity: " + str(self.velocity))
-        print("Distance from Sun: " + str(self.sunDistance))
-        print("Other data: ...")
-        print("===============================")
+        if(self.name == 'Sun'):
+             print("\n\n\n\n\n===============================")
+             print("Name: " + self.name)
+             print("Mass: " + str(self.mass))
+             print("Position: " + str(self.position))
+             print("===============================")
+        else:
+             print("\n\n\n\n\n===============================")
+             print("Name: " + self.name)
+             print("Mass: " + str(self.mass))
+             print("Position: " + str(self.position))
+             print("Velocity: " + str(self.velocity))
+             print("Distance from Sun: " + str(self.sunDistance))
+             print("===============================")
+
         return
 
     def eclipseCheck(self, body2, sun):
