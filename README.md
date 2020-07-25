@@ -18,7 +18,6 @@ Physics-based, simulation of the solar system.
 - Pygame
 - Numpy
 - Sqlite3
-- Sqlalchemy
 - Pandas
 - SQLAlchemy
 - Skyfield
@@ -33,7 +32,6 @@ pip install numpy
 pip install sqlite3
 pip install sqlalchemy
 pip install pandas
-pip install sqlalchemy
 pip install skyfield
 ```
 
