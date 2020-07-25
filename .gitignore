@@ -3,4 +3,5 @@ notes.txt
 project/
 concept/
 __pycache__/*
-.db
+*.db
+database_creation/__pycache__/*
