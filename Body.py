@@ -7,7 +7,7 @@ import math
 import pygame
 from random import *
 import numpy as np
-from database_creation.database_antikythera import *
+#from database_creation.database_antikythera import *
 
 # set up colors:
 
@@ -22,9 +22,8 @@ GRAY = (128, 128, 128)
 
 ############################## celestial body object
 class Body(object):
-    def __init__(self, n, m, x, y, r, c, s, root, tr):
-        # mass, postion (x, y), color
-        self.name = n
+    def __init__(self, m, x, y, r, c, s, root, tr):
+        # mass, position (x, y), color
         self.mass = m
         self.position = np.array([x, y])
         self.last_position = np.array([x-1, y-1])
