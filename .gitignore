@@ -5,3 +5,4 @@ concept/
 __pycache__/*
 *.db
 database_creation/__pycache__/*
+database_creation/*.db
