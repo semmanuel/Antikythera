@@ -77,7 +77,7 @@ class Body(object):
 
     def printData(self):
         if(self.name == 'Sun'):
-             print("\n\n\n\n\n===============================")
+             print("\n\n\n\n\n\n\n===============================")
              print("Name: " + self.name)
              print("Mass: " + str(self.mass))
              print("Position: " + str(self.position))
