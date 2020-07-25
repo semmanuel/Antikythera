@@ -35,7 +35,7 @@ class Body(object):
         self.sun = s
         self.surface = root
         self.trails = tr
-        self.sunDistance = math.sqrt((self.position[0] - 400)**2 + (self.position[1] - 300)**2)
+        self.sunDistance = math.sqrt((self.position[0] - 800)**2 + (self.position[1] - 400)**2)
 
 
     def applyForce(self, force):
@@ -49,7 +49,7 @@ class Body(object):
             self.velocity = np.add(self.velocity, self.accel)
             self.last_position = self.position
             self.position = np.add(self.position, self.velocity)
-            self.sunDistance = math.sqrt((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
+            self.sunDistance = math.sqrt((self.position[0] - 800) ** 2 + (self.position[1] - 400) ** 2)
             self.accel = 0
 
     def display(self):
@@ -86,35 +86,15 @@ class Body(object):
         print("===============================")
         return
 
-    def eclipseCheck(self, body2):
-         if self.sunDistance > body2.sunDistance:
-             cross = (body2.position[1] - 300)*(self.position[0] - 400) - (body2.position[0] - 400)*(self.position[1] - 300)
-             if math.isclose(cross, 0, abs_tol=1):
-                 return True
-             dot = np.dot(self.position, body2.position)
-             if dot < 0:
-                 return False
-             squaredLength = ((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
-             if dot > squaredLength:
-                 return False
-             return True
-         else:
-            cross = (self.position[1] - 300) * (body2.position[0] - 400) - (self.position[0] - 400) * (body2.position[1] - 300)
-            if math.isclose(cross, 0, abs_tol=1):
-                return True
-            dot = np.dot(self.position, body2.position)
-            if dot < 0:
-                return False
-            squaredLength = ((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
-            if dot > squaredLength:
-                return False
-            return True
-    def eclipseCheck2(self, body2):
-        selfBodyDist = math.sqrt((self.position[0] - body2.position[0]) ** 2 + (self.position[1] - body2.position[1]) ** 2)
+    def eclipseCheck(self, body2, sun):
+        col = math.isclose(np.cross(self.position - sun.position, body2.position - sun.position), 0, abs_tol=25)
         if self.sunDistance > body2.sunDistance:
-            return math.isclose(selfBodyDist + body2.sunDistance, self.sunDistance)
+            betweenx = self.position[0] <= body2.position[0] <= sun.position[0] or sun.position[0] <= body2.position[0] <= self.position[0]
+            betweeny = self.position[1] <= body2.position[1] <= sun.position[1] or sun.position[1] <= body2.position[1] <= self.position[1]
         else:
-            return math.isclose(selfBodyDist + body2.sunDistance, body2.sunDistance)
+            betweenx = body2.position[0] <= self.position[0] <= sun.position[0] or sun.position[0] <= self.position[0] <= body2.position[0]
+            betweeny = body2.position[1] <= self.position[1] <= sun.position[1] or sun.position[1] <= self.position[1] <= body2.position[1]
+        return (col and (betweenx if self.position[0] != sun.position[0] else betweeny))
 
 
 ############################## mathematical functions
