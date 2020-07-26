@@ -21,6 +21,15 @@ cursor = database.cursor()
 database1 = sqlite3.connect('Stars.db')
 cursor1 = database1.cursor()
 
+database2 = sqlite3.connect('Asteroid_orbit.db')
+cursor2 = database2.cursor()
+
+database3 = sqlite3.connect('solar_eclipse.db')
+cursor3 = database3.cursor()
+
+database4 = sqlite3.connect('near_earth_comets.db')
+cursor4 = database4.cursor()
+
 
 # trails
 trails_active = False
@@ -88,10 +97,9 @@ def searchEventMenu():
         print("===========================================")
         print(" SEARCH DATABASE FOR CELESTIAL EVENTS")
         print("===========================================")
-        print(" [ 1 ] to Search for Event Type A")
-        print(" [ 2 ] to Search for Event Type B")
-        print(" [ 3 ] to Search for Event Type C")
-        print(" [ 4 ] to Search for Event Type D")
+        print(" [ 1 ] to Search for Asteroids")
+        print(" [ 2 ] to Search for Lunar Eclipse")
+        print(" [ 3 ] to Search for Solar Eclipse")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
         eventSelect = int(input())
@@ -101,16 +109,38 @@ def searchEventMenu():
             break
         elif eventSelect == 1:
             # search and print results\
-            print("Searching...\n\n")
+            y = 1
+            cursor2.execute("""SELECT DISTINCT `Object Classification` FROM `Asteroid Orbits`""")
+            query_result = [row[0] for row in cursor2.fetchall()]
+            for i in query_result:
+                print(y, '.', i)
+                y += 1
+
+            choice = input('Do you want to see specific asteroids in a category?\n1.Yes\n2.No')
+            choice = int(choice)
+            if choice == 1:
+                number = input('Enter number of asteroid category you want to see: ')
+                number = int(number)
+
+                cursor2.execute("""SELECT `Object Name` FROM `Asteroid Orbits` WHERE `Object Classification` = '%s' """ % (query_result[number - 1]))
+                query_result1 = [row[0] for row in cursor2.fetchall()]
+                for i in query_result1:
+                    print(i)
+
         elif eventSelect == 2:
             # search and print results\
-            print("Searching...\n\n")
+            year = input('Enter the year you wanna search for a Lunar Eclipse: ')
+            cursor2.execute("""SELECT `Calendar Date`, `Eclipse Type` FROM `Lunar Eclipse` WHERE `Calendar Date` LIKE ?""",(year + ' %',))
+            query_result1 = cursor2.fetchall()
+            for i in query_result1:
+                print(i)
         elif eventSelect == 3:
             # search and print results\
-            print("Searching...\n\n")
-        elif eventSelect == 4:
-            # search and print results\
-            print("Searching...\n\n")
+            year = input('Enter the year you wanna search for a Solar Eclipse: ')
+            cursor3.execute("""SELECT `Calendar Date`, `Eclipse Type` FROM `Solar Eclipse` WHERE `Calendar Date` LIKE ?""",(year + ' %',))
+            query_result1 = cursor3.fetchall()
+            for i in query_result1:
+                print(i)
         else:
             print("ERROR....\n\n")
     return
@@ -150,7 +180,11 @@ def searchBodyMenu():
 
         elif eventSelect == 3:
             # search and print results\
-            print("Searching...\n\n")
+            cursor4.execute("""SELECT Object, Epoch FROM Comets """)
+            query_result = cursor4.fetchall()
+            for i in query_result:
+                print(i)
+
         elif eventSelect == 4:
             # search and print results\
             print("Searching...\n\n")
