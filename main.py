@@ -13,7 +13,7 @@ from  database_creation.create_db import create_db
 ############ database set up################################
 
 #changing work directory, to work from database_creation directory
-os.chdir('..\Antikythera\database_creation')
+os.chdir('database_creation')
 path_database_creation=os.getcwd()
 
 #create every database needed.
