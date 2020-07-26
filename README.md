@@ -38,8 +38,7 @@ pip install skyfield
 Clone project, setup databases, and run main program.
 ```
 git clone https://github.com/semmanuel/Antikythera
-cd Antikythera
-python3 database_creation/create_db.py  
+cd Antikythera  
 python3 main.py
 ```
 
