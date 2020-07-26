@@ -15,7 +15,7 @@ from Transferwindow import *
 from database_antikythera import *
 from create_db import create_db
 ############ database set up
-create_db()
+create_db() #create every database needed.
 database = sqlite3.connect('celestial_objects.db')
 cursor = database.cursor()
 
