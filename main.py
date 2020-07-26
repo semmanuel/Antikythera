@@ -43,6 +43,7 @@ trails_active = False
 g = 0.4
 
 zoom_level = 1
+speed_scale = 100
 
 # dimensions
 WIDTH = 1600
@@ -91,8 +92,8 @@ def draw():
         #         body.applyForce(force)
         if isinstance(body, CelestialBody):
             #### orbital motion
-            body.update(zoom_level, 100) # (distance_scaling, velocity_scaling))
-        body.display()
+            body.update(zoom_level, speed_scale) # (distance_scaling, velocity_scaling))
+        body.display(zoomed)
 
     ############################# RE-draw menu buttons
     gui.drawMenu()
@@ -236,6 +237,7 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     gui = GUI(WIDTH, HEIGHT)
     time_scale = 1
+    zoomed = False
 
     # initial set up
     setup()
@@ -243,7 +245,10 @@ if __name__ == "__main__":
         # while pause not pressed, draw and update screen
         gui.drawMenu()
         for body in bodies:
-            body.display()
+            body.display(zoomed)
+
+        if zoomed:
+            zoomed = False
 
         if gui.pause == False:
             # render screen
@@ -268,10 +273,15 @@ if __name__ == "__main__":
                         else:
                             body.trails = True
 
+                # zooming with scroll wheel
                 if event.button == 4:
                     zoom_level = zoom_level * 1.5
+                    gui.space.fill(BLACK)
+                    zoomed = True
                 elif event.button == 5:
                     zoom_level = zoom_level / 1.5
+                    zoomed = True
+                    gui.space.fill(BLACK)
 
                 # search object button
                 if gui.search_object_button.collidepoint(mouse_pos):
@@ -298,10 +308,13 @@ if __name__ == "__main__":
                 # f time travel
                 if gui.f_timetravel_button.collidepoint(mouse_pos):
                     time_scale = time_scale / 1.25
+                    speed_scale = speed_scale / 1.25
+
 
                 # b time travel
                 if gui.b_timetravel_button.collidepoint(mouse_pos):
                     time_scale = time_scale * 1.25
+                    speed_scale = speed_scale * 1.25
 
             # hover
             if event.type == pygame.MOUSEMOTION:

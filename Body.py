@@ -43,14 +43,14 @@ class Body(object):
         self.accel = np.add(self.accel, f)
 
 
-    def display(self):
+    def display(self, zoomed):
         # draw over old object location
         pygame.draw.circle(self.surface, BLACK, (int(self.last_position[0]), int(self.last_position[1])), self.radius)  	# (drawLayer, color, (coordinates), radius)
 
         # draw trail (Comment this line out to remove trails)
         if self.trails:
-            pygame.draw.line(self.surface, self.color, (int(self.last_position[0]), int(self.last_position[1])), (int(self.position[0]), int(self.position[1])), 5)
-
+            if not zoomed:
+                pygame.draw.line(self.surface, self.color, (int(self.last_position[0]), int(self.last_position[1])), (int(self.position[0]), int(self.position[1])), 5)
         # draw new object location
         pygame.draw.circle(self.surface, self.color, (int(self.position[0]), int(self.position[1])), self.radius)
 
