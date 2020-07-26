@@ -13,28 +13,28 @@ class CelestialBody(Body):
                 real_gravity, real_escape_velocity, real_rotation_period, real_length_of_day, real_distance_from_sun, real_perihelion, real_aphelion,
                 real_orbital_period, real_orbital_velocity, real_orbital_inclination, real_orbital_eccentricity, real_obliquity_to_orbit,
                 real_mean_temperature, real_surface_pressure, real_number_of_moons, real_has_ring_system, real_has_global_magnetic_field):
-    self.name=name #None
-    self.mass=real_mass #None
-    self.diameter=real_diameter #None
-    self.volume=real_volume
-    self.density=real_density #None
-    self.gravity=real_gravity #None
-    self.escape_velocity=real_escape_velocity#None
-    self.rotation_period=real_rotation_period#None
-    self.length_of_day=real_length_of_day#None
-    self.distance_from_sun=real_distance_from_sun#None
-    self.perihelion=real_perihelion #None
-    self.aphelion=real_aphelion#None
-    self.orbital_period=real_orbital_period#None
-    self.orbital_velocity=real_orbital_velocity#None
-    self.orbital_inclination=real_orbital_inclination#None
-    self.orbital_eccentricity=real_orbital_eccentricity#None
-    self.obliquity_to_orbit=real_obliquity_to_orbit#None
-    self.mean_temperature=real_mean_temperature#None
-    self.surface_pressure=real_surface_pressure#None
-    self.number_of_moons=real_number_of_moons#None
-    self.has_ring_system=real_has_ring_system#None
-    self.has_global_magnetic_field=real_has_global_magnetic_field#None
+    self.name = name #None
+    self.mass = real_mass #None
+    self.diameter = real_diameter #None
+    self.volume = real_volume
+    self.density = real_density #None
+    self.gravity = real_gravity #None
+    self.escape_velocity = real_escape_velocity#None
+    self.rotation_period = real_rotation_period#None
+    self.length_of_day = real_length_of_day#None
+    self.distance_from_sun = real_distance_from_sun#None
+    self.perihelion = real_perihelion #None
+    self.aphelion = real_aphelion#None
+    self.orbital_period = real_orbital_period#None
+    self.orbital_velocity = real_orbital_velocity#None
+    self.orbital_inclination = real_orbital_inclination#None
+    self.orbital_eccentricity = real_orbital_eccentricity#None
+    self.obliquity_to_orbit = real_obliquity_to_orbit#None
+    self.mean_temperature = real_mean_temperature#None
+    self.surface_pressure = real_surface_pressure#None
+    self.number_of_moons = real_number_of_moons#None
+    self.has_ring_system = real_has_ring_system#None
+    self.has_global_magnetic_field = real_has_global_magnetic_field#None
     Body.__init__( self,m, x, y, r, c, s, root, tr)
 
   #created a classmethod functioning as a constructor, to avoid inputting manually the
@@ -101,7 +101,7 @@ class Star(Body):
 
   @classmethod
   def create_star(cls,star_name,m, x, y, r, c, s, root, tr):
-    database = sqlite3.connect("stars.db")
+    database = sqlite3.connect("Stars.db")
     cursor=database.cursor()
     cursor.execute("""SELECT * FROM STARS 
     WHERE STAR= ?;""",(star_name,))
