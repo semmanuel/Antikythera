@@ -49,6 +49,7 @@ python3 main.py
 - Slow down, speed up, and pause time
 - Activate orbit tracking trails
 - Hover over planets for information.
+- Zoom in/out via scroll
 
 ## Authors
 * [**Brandon Merluzzo**](https://github.com/mishakh) - merluzzob@wit.edu
