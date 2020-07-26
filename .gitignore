@@ -6,3 +6,5 @@ __pycache__/*
 *.db
 database_creation/__pycache__/*
 database_creation/*.db
+celestial_events.db
+celestial_objects.db
