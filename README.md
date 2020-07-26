@@ -1,6 +1,10 @@
 # Antikythera
 
-Physics-based, simulation of the solar system.
+Graphical simulation of the solar system.
+
+![screenshot1](https://raw.githubusercontent.com/semmanuel/Antikythera/master/Project%20Process%20Models/screenshot.png)
+
+
 
 ## Program Structure
 - ``Project Process Models/`` - Design models.
