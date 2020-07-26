@@ -82,14 +82,15 @@ class Star(Body):
   def __init__(self,name, m, x, y, r, c, s, root, tr,real_mass, real_volume, real_radius, real_photos_radius, real_photos_temp, real_photos_depth,
                real_flatness, real_surface_gravity, real_solar_constant, real_sunspot_cycle, real_mean_density, real_escape_velocity,
                real_effective_temp):
+    self.name= name
     self.mass= real_mass,
-    self.volume= real_volume,
-    self.radius= real_radius,
+    self.volume= real_volume
+    self.radius= real_radius
     self.photos_radius= real_photos_radius,
     self.photos_temp= real_photos_temp,
     self.photos_depth= real_photos_depth,
     self.flatness= real_flatness,
-    self.surface_gravity= real_surface_gravity,
+    self.surface_gravity= real_surface_gravity
     self.solar_constant= real_solar_constant,
     self.sunspot_cycle= real_sunspot_cycle,
     self.mean_density=real_mean_density
