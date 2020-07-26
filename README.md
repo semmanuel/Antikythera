@@ -35,7 +35,6 @@ pip install pygame
 pip install numpy
 pip install sqlalchemy
 pip install pandas
-pip install skyfield
 ```
 
 Clone project, setup databases, and run main program.
