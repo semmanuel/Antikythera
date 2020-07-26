@@ -275,13 +275,14 @@ if __name__ == "__main__":
 
                 # zooming with scroll wheel
                 if event.button == 4:
-                    zoom_level = zoom_level * 1.5
+                    zoom_level = zoom_level * 1.1
                     gui.space.fill(BLACK)
                     zoomed = True
                 elif event.button == 5:
-                    zoom_level = zoom_level / 1.5
-                    zoomed = True
+                    zoom_level = zoom_level / 1.1
                     gui.space.fill(BLACK)
+                    zoomed = True
+
 
                 # search object button
                 if gui.search_object_button.collidepoint(mouse_pos):
