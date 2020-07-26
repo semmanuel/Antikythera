@@ -13,8 +13,9 @@ from Body import *
 import sqlite3
 from Transferwindow import *
 from database_antikythera import *
-
+from create_db import create_db
 ############ database set up
+create_db()
 database = sqlite3.connect('celestial_objects.db')
 cursor = database.cursor()
 
@@ -220,6 +221,7 @@ def searchTransferwindow():
 
 
 if __name__ == "__main__":
+
     # initiate pygame and clock
     pygame.init()
     pygame.display.set_caption('antikythera alpha')
