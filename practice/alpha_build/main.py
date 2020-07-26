@@ -12,14 +12,10 @@ from GUI import *
 from Body import *
 import sqlite3
 from Transferwindow import *
-from database_antikythera import *
 
 ############ database set up
 database = sqlite3.connect('celestial_objects.db')
 cursor = database.cursor()
-
-database1 = sqlite3.connect('Stars.db')
-cursor1 = database1.cursor()
 
 
 # trails
@@ -45,18 +41,18 @@ GRAY = (128, 128, 128)
 def setup():
     # sun
     # Body(mass, x-position, y-position, radius, color, sun, root, trails)
-    the_sun = Star.create_star('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active)
+    the_sun = Body('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active)
 
     # planets
     # Body(name, mass, x-position, y-position, radius, color, sun, root, trails)
-    mercury = CelestialBody.create_planet('Mercury', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
-    venus = CelestialBody.create_planet('Venus', randint(10, 20), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
-    earth = CelestialBody.create_planet('Earth', randint(20, 30), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
-    mars = CelestialBody.create_planet('Mars', randint(30, 40), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
-    jupiter = CelestialBody.create_planet('Jupiter', randint(40, 50), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
-    saturn = CelestialBody.create_planet('Saturn', randint(50, 60), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
-    uranus = CelestialBody.create_planet('Uranus', randint(60, 70), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
-    neptune = CelestialBody.create_planet('Neptune', randint(70, 90), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    mercury = Body('Mercury', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
+    venus = Body('Venus', randint(10, 20), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
+    earth = Body('Earth', randint(20, 30), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    mars = Body('Mars', randint(30, 40), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    jupiter = Body('Jupiter', randint(40, 50), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
+    saturn = Body('Saturn', randint(50, 60), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
+    uranus = Body('Uranus', randint(60, 70), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
+    neptune = Body('Neptune', randint(70, 90), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
 
     # list of all bodies in universe
     global bodies
@@ -123,9 +119,9 @@ def searchBodyMenu():
         print("===========================================")
         print(" SEARCH DATABASE FOR CELESTIAL BODIES")
         print("===========================================")
-        print(" [ 1 ] to Search for Planets")
-        print(" [ 2 ] to Search for Stars")
-        print(" [ 3 ] to Search for Comets")
+        print(" [ 1 ] to Search for Body Type A")
+        print(" [ 2 ] to Search for Body Type B")
+        print(" [ 3 ] to Search for Body Type C")
         print(" [ 4 ] to Search for Body Type D")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
@@ -136,18 +132,10 @@ def searchBodyMenu():
             break
         elif eventSelect == 1:
             # search and print results\
-            cursor.execute("""SELECT planet from celestial_objects""")
-            query_result = [row[0] for row in cursor.fetchall()]
-            for i in query_result:
-                print(i)
-
+            print("Searching...\n\n")
         elif eventSelect == 2:
             # search and print results\
-            cursor1.execute("""SELECT Star from Stars WHERE Star != 'None'""")
-            query_result = [row[0] for row in cursor1.fetchall()]
-            for i in query_result:
-                print(i)
-
+            print("Searching...\n\n")
         elif eventSelect == 3:
             # search and print results\
             print("Searching...\n\n")
@@ -164,19 +152,19 @@ def searchTransferwindow():
     Object2 = input('Enter the destination planet: ')
 
     ##### Getting the required information from the database
-    cursor.execute("""SELECT distance_from_sun FROM celestial_objects WHERE planet = '%s'""" % Object1)
+    cursor.execute("""SELECT distance_from_sun FROM Planets WHERE planet = '%s'""" % Object1)
     object1 = [row[0] for row in cursor.fetchall()]
     distance1 = float(object1[0])
 
-    cursor.execute("""SELECT distance_from_sun FROM celestial_objects WHERE planet = '%s'""" % Object2)
+    cursor.execute("""SELECT distance_from_sun FROM Planets WHERE planet = '%s'""" % Object2)
     object2 = [row[0] for row in cursor.fetchall()]
     distance2 = float(object2[0])
 
-    cursor.execute("""SELECT orbital_period FROM celestial_objects WHERE planet = '%s'""" % Object1)
+    cursor.execute("""SELECT orbital_period FROM Planets WHERE planet = '%s'""" % Object1)
     object1 = [row[0] for row in cursor.fetchall()]
     orbital1 = object1[0]
 
-    cursor.execute("""SELECT orbital_period FROM celestial_objects WHERE planet = '%s'""" % Object2)
+    cursor.execute("""SELECT orbital_period FROM Planets WHERE planet = '%s'""" % Object2)
     object2 = [row[0] for row in cursor.fetchall()]
     orbital2 = object2[0]
 
@@ -188,7 +176,7 @@ def searchTransferwindow():
 if __name__ == "__main__":
     # initiate pygame and clock
     pygame.init()
-    pygame.display.set_caption('antikythera alpha')
+    pygame.display.set_caption('antikythera beta')
     clock = pygame.time.Clock()
 
     gui = GUI(WIDTH, HEIGHT)
@@ -267,9 +255,3 @@ if __name__ == "__main__":
         # update GUI and wait
         pygame.display.update()
         time.sleep(0.05 * time_scale)
-
-database.commit()
-database1.commit()
-
-database.close()
-database1.close()

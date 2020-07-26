@@ -7,8 +7,11 @@ import math
 import pygame
 from random import *
 import numpy as np
+#from database_creation.database_antikythera import *
 
 # set up colors:
+
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -19,9 +22,8 @@ GRAY = (128, 128, 128)
 
 ############################## celestial body object
 class Body(object):
-    def __init__(self, n, m, x, y, r, c, s, root, tr):
-        # mass, postion (x, y), color
-        self.name = n
+    def __init__(self, m, x, y, r, c, s, root, tr):
+        # mass, position (x, y), color
         self.mass = m
         self.position = np.array([x, y])
         self.last_position = np.array([x-1, y-1])
@@ -32,7 +34,8 @@ class Body(object):
         self.sun = s
         self.surface = root
         self.trails = tr
-        self.sunDistance = math.sqrt((self.position[0] - 400)**2 + (self.position[1] - 300)**2)
+        self.sunDistance = math.sqrt((self.position[0] - 800)**2 + (self.position[1] - 400)**2)
+
 
     def applyForce(self, force):
         # apply forces to a body
@@ -45,7 +48,7 @@ class Body(object):
             self.velocity = np.add(self.velocity, self.accel)
             self.last_position = self.position
             self.position = np.add(self.position, self.velocity)
-            self.sunDistance = math.sqrt((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
+            self.sunDistance = math.sqrt((self.position[0] - 800) ** 2 + (self.position[1] - 400) ** 2)
             self.accel = 0
 
     def display(self):
@@ -72,45 +75,43 @@ class Body(object):
 
 
     def printData(self):
-        print("\n\n\n\n\n===============================")
-        print("Name: " + self.name)
-        print("Mass: " + str(self.mass))
-        print("Position: " + str(self.position))
-        print("Velocity: " + str(self.velocity))
-        print("Distance from Sun: " + str(self.sunDistance))
-        print("Other data: ...")
-        print("===============================")
+        if(self.name == "Sun"):
+             print("\n\n\n\n\n\n\n===============================")
+             print("Name: " + self.name)
+             print("Mass: " + str(self.mass))
+             print("Volume: " + str(self.volume))
+             print("Position: " + str(self.position))
+             print("Radius: " + str(self.radius))
+             print("Surface Gravity: " + str(self.surface_gravity))
+             print("Mean Density: " + str(self.mean_density))
+             print("Effective Temperature: " + str(self.effective_tmp))
+             print("===============================")
+        else:
+             print("\n\n\n\n\n===============================")
+             print("Name: " + self.name)
+             print("Mass: " + str(self.mass))
+             print("Volume: " + str(self.volume))
+             print("Position: " + str(self.position))
+             print("Diameter: " + str(self.diameter))
+             print("Velocity: " + str(self.orbital_velocity))
+             print("Distance from Sun: " + str(self.distance_from_sun))
+             print("Density: " + str(self.density))
+             print("Surface Gravity: " + str(self.gravity))
+             print("Mean Temperature: " + str(self.mean_temperature))
+             print("Number of Moons: " + str(self.number_of_moons))
+             print("===============================")
+
         return
 
-    def eclipseCheck(self, body2):
-         if self.sunDistance > body2.sunDistance:
-             cross = (body2.position[1] - 300)*(self.position[0] - 400) - (body2.position[0] - 400)*(self.position[1] - 300)
-             if math.isclose(cross, 0, abs_tol=1):
-                 return True
-             dot = np.dot(self.position, body2.position)
-             if dot < 0:
-                 return False
-             squaredLength = ((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
-             if dot > squaredLength:
-                 return False
-             return True
-         else:
-            cross = (self.position[1] - 300) * (body2.position[0] - 400) - (self.position[0] - 400) * (body2.position[1] - 300)
-            if math.isclose(cross, 0, abs_tol=1):
-                return True
-            dot = np.dot(self.position, body2.position)
-            if dot < 0:
-                return False
-            squaredLength = ((self.position[0] - 400) ** 2 + (self.position[1] - 300) ** 2)
-            if dot > squaredLength:
-                return False
-            return True
-    def eclipseCheck2(self, body2):
-        selfBodyDist = math.sqrt((self.position[0] - body2.position[0]) ** 2 + (self.position[1] - body2.position[1]) ** 2)
+    def eclipseCheck(self, body2, sun):
+        col = math.isclose(np.cross(self.position - sun.position, body2.position - sun.position), 0, abs_tol=25)
         if self.sunDistance > body2.sunDistance:
-            return math.isclose(selfBodyDist + body2.sunDistance, self.sunDistance)
+            betweenx = self.position[0] <= body2.position[0] <= sun.position[0] or sun.position[0] <= body2.position[0] <= self.position[0]
+            betweeny = self.position[1] <= body2.position[1] <= sun.position[1] or sun.position[1] <= body2.position[1] <= self.position[1]
         else:
-            return math.isclose(selfBodyDist + body2.sunDistance, body2.sunDistance)
+            betweenx = body2.position[0] <= self.position[0] <= sun.position[0] or sun.position[0] <= self.position[0] <= body2.position[0]
+            betweeny = body2.position[1] <= self.position[1] <= sun.position[1] or sun.position[1] <= self.position[1] <= body2.position[1]
+        return (col and (betweenx if self.position[0] != sun.position[0] else betweeny))
 
 
 ############################## mathematical functions
