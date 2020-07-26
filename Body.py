@@ -75,19 +75,30 @@ class Body(object):
 
 
     def printData(self):
-        if(self.name == 'Sun'):
+        if(self.name == "Sun"):
              print("\n\n\n\n\n\n\n===============================")
              print("Name: " + self.name)
              print("Mass: " + str(self.mass))
+             print("Volume: " + str(self.volume))
              print("Position: " + str(self.position))
+             print("Radius: " + str(self.radius))
+             print("Surface Gravity: " + str(self.surface_gravity))
+             print("Mean Density: " + str(self.mean_density))
+             print("Effective Temperature: " + str(self.effective_tmp))
              print("===============================")
         else:
              print("\n\n\n\n\n===============================")
              print("Name: " + self.name)
              print("Mass: " + str(self.mass))
+             print("Volume: " + str(self.volume))
              print("Position: " + str(self.position))
-             print("Velocity: " + str(self.velocity))
-             print("Distance from Sun: " + str(self.sunDistance))
+             print("Diameter: " + str(self.diameter))
+             print("Velocity: " + str(self.orbital_velocity))
+             print("Distance from Sun: " + str(self.distance_from_sun))
+             print("Density: " + str(self.density))
+             print("Surface Gravity: " + str(self.gravity))
+             print("Mean Temperature: " + str(self.mean_temperature))
+             print("Number of Moons: " + str(self.number_of_moons))
              print("===============================")
 
         return
