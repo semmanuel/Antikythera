@@ -33,7 +33,6 @@ You can also use the package manager [pip](https://pip.pypa.io/en/stable/) from 
 ```bash
 pip install pygame
 pip install numpy
-pip install sqlite3
 pip install sqlalchemy
 pip install pandas
 pip install skyfield
