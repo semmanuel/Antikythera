@@ -4,13 +4,14 @@
 #
 
 ############################## file set up
-import sys, time
+import sys, time, math
 
 import sqlite3
 import numpy as np
 from GUI import *
 from Body import *
 import sqlite3
+import random
 from Transferwindow import *
 from database_antikythera import *
 from create_db import create_db
@@ -41,6 +42,8 @@ trails_active = False
 # value for gravity equation
 g = 0.4
 
+zoom_level = 1
+
 # dimensions
 WIDTH = 1600
 HEIGHT = 800
@@ -57,19 +60,19 @@ GRAY = (128, 128, 128)
 ############################## set up and draw
 def setup():
     # sun
-    # Body(mass, x-position, y-position, radius, color, sun, root, trails)
-    the_sun = Star.create_star('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active)
+    # Body(mass, x-position, y-position, radius, color, sun, root, trails, theta)
+    the_sun = Star.create_star('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active, 0)
 
     # planets
     # Body(name, mass, x-position, y-position, radius, color, sun, root, trails)
-    mercury = CelestialBody.create_planet('Mercury', randint(0, 10), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
-    venus = CelestialBody.create_planet('Venus', randint(10, 20), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
-    earth = CelestialBody.create_planet('Earth', randint(20, 30), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
-    mars = CelestialBody.create_planet('Mars', randint(30, 40), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
-    jupiter = CelestialBody.create_planet('Jupiter', randint(40, 50), randint(0, WIDTH), randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active)
-    saturn = CelestialBody.create_planet('Saturn', randint(50, 60), randint(0, WIDTH), randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active)
-    uranus = CelestialBody.create_planet('Uranus', randint(60, 70), randint(0, WIDTH), randint(0, HEIGHT), 5, RED, False, gui.space, trails_active)
-    neptune = CelestialBody.create_planet('Neptune', randint(70, 90), randint(0, WIDTH), randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active)
+    mercury = CelestialBody.create_planet('Mercury', np.random.randint(0, 10), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active, np.random.random_sample())
+    venus = CelestialBody.create_planet('Venus', np.random.randint(10, 20), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active, np.random.random_sample())
+    earth = CelestialBody.create_planet('Earth', np.random.randint(20, 30), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active, np.random.random_sample())
+    mars = CelestialBody.create_planet('Mars', np.random.randint(30, 40), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, RED, False, gui.space, trails_active, np.random.random_sample())
+    jupiter = CelestialBody.create_planet('Jupiter', np.random.randint(40, 50), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active, np.random.random_sample())
+    saturn = CelestialBody.create_planet('Saturn', np.random.randint(50, 60), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active, np.random.random_sample())
+    uranus = CelestialBody.create_planet('Uranus', np.random.randint(60, 70), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, RED, False, gui.space, trails_active, np.random.random_sample())
+    neptune = CelestialBody.create_planet('Neptune', np.random.randint(70, 90), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active, np.random.random_sample())
 
     # list of all bodies in universe
     global bodies
@@ -80,13 +83,17 @@ def setup():
 def draw():
     # for each body: apply forces, update position, and draw
     for body in bodies:
-        for other_body in bodies:
-            if (body != other_body):
-                global g
-                force = other_body.attract(body, g)
-                body.applyForce(force)
-        body.update()
+        #### physics based motion
+        # for other_body in bodies:
+        #     if (body != other_body):
+        #         global g
+        #         force = other_body.attract(body, g)
+        #         body.applyForce(force)
+        if isinstance(body, CelestialBody):
+            #### orbital motion
+            body.update(zoom_level, 100) # (distance_scaling, velocity_scaling))
         body.display()
+
     ############################# RE-draw menu buttons
     gui.drawMenu()
     pygame.display.update()
@@ -223,14 +230,11 @@ def searchTransferwindow():
 
 
 if __name__ == "__main__":
-
     # initiate pygame and clock
     pygame.init()
-    pygame.display.set_caption('antikythera alpha')
+    pygame.display.set_caption('antikythera beta')
     clock = pygame.time.Clock()
-
     gui = GUI(WIDTH, HEIGHT)
-
     time_scale = 1
 
     # initial set up
@@ -263,6 +267,11 @@ if __name__ == "__main__":
                             gui.space.fill(BLACK)
                         else:
                             body.trails = True
+
+                if event.button == 4:
+                    zoom_level = zoom_level * 1.5
+                elif event.button == 5:
+                    zoom_level = zoom_level / 1.5
 
                 # search object button
                 if gui.search_object_button.collidepoint(mouse_pos):
@@ -305,6 +314,7 @@ if __name__ == "__main__":
         # update GUI and wait
         pygame.display.update()
         time.sleep(0.05 * time_scale)
+
 
 database.commit()
 database1.commit()

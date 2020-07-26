@@ -22,7 +22,7 @@ GRAY = (128, 128, 128)
 
 ############################## celestial body object
 class Body(object):
-    def __init__(self, m, x, y, r, c, s, root, tr):
+    def __init__(self, m, x, y, r, c, s, root, tr, theta):
         # mass, position (x, y), color
         self.mass = m
         self.position = np.array([x, y])
@@ -35,21 +35,13 @@ class Body(object):
         self.surface = root
         self.trails = tr
         self.sunDistance = math.sqrt((self.position[0] - 800)**2 + (self.position[1] - 400)**2)
-
+        self.theta = theta
 
     def applyForce(self, force):
         # apply forces to a body
         f = force / self.mass
         self.accel = np.add(self.accel, f)
 
-    def update(self):
-        if self.sun == False:
-            # update position based on velocity and reset accel if not sun
-            self.velocity = np.add(self.velocity, self.accel)
-            self.last_position = self.position
-            self.position = np.add(self.position, self.velocity)
-            self.sunDistance = math.sqrt((self.position[0] - 800) ** 2 + (self.position[1] - 400) ** 2)
-            self.accel = 0
 
     def display(self):
         # draw over old object location
@@ -77,7 +69,7 @@ class Body(object):
     def printData(self):
         if(self.name == "Sun"):
              print("\n\n\n\n\n\n\n===============================")
-             print("Name: " + self.name)
+             print("Name: " + str(self.name))
              print("Mass: " + str(self.mass))
              print("Volume: " + str(self.volume))
              print("Position: " + str(self.position))
@@ -88,7 +80,7 @@ class Body(object):
              print("===============================")
         else:
              print("\n\n\n\n\n===============================")
-             print("Name: " + self.name)
+             print("Name: " + str(self.name))
              print("Mass: " + str(self.mass))
              print("Volume: " + str(self.volume))
              print("Position: " + str(self.position))
