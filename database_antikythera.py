@@ -101,7 +101,7 @@ class Star(Body):
 
   @classmethod
   def create_star(cls,star_name,m, x, y, r, c, s, root, tr):
-    database = sqlite3.connect("stars.db")
+    database = sqlite3.connect("Stars.db")
     cursor=database.cursor()
     cursor.execute("""SELECT * FROM STARS 
     WHERE STAR= ?;""",(star_name,))
