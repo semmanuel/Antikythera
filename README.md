@@ -54,7 +54,7 @@ python3 main.py
 - Zoom in/out via scroll
 
 ## Authors
-* [**Brandon Merluzzo**](https://github.com/mishakh) - merluzzob@wit.edu
+* [**Brandon Merluzzo**](https://github.com/merluzzob) - merluzzob@wit.edu
 
 * [**Carter Trafton**](https://github.com/cartertrafton) - cartertrafton@gmail.com
 
