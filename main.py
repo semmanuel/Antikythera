@@ -1,40 +1,42 @@
-#
-# main.py
-# Main python file to run project.
-#
-
-############################## file set up
-import sys, time, math
+import sys, time, os
 
 import sqlite3
 import numpy as np
 from GUI import *
 from Body import *
-import sqlite3
-import random
 from Transferwindow import *
-from database_antikythera import *
-from create_db import create_db
-############ database set up
-create_db() #create every database needed.
-database = sqlite3.connect('celestial_objects.db')
+
+#modules from the database_creation directory
+from database_creation.database_antikythera import *
+from  database_creation.create_db import create_db
+
+############ database set up################################
+
+#changing work directory, to work from database_creation directory
+os.chdir('../Antikythera\database_creation')
+path_database_creation=os.getcwd()
+
+#create every database needed.
+create_db()
+
+print(path_database_creation+'\Stars.db')
+database = sqlite3.connect(path_database_creation+r'/celestial_objects.db')
 cursor = database.cursor()
 
-database1 = sqlite3.connect('Stars.db')
+database1 = sqlite3.connect(path_database_creation+r'\Stars.db')
 cursor1 = database1.cursor()
 
-database2 = sqlite3.connect('Asteroid_orbit.db')
+database2 = sqlite3.connect(path_database_creation+r'\Asteroid_orbit.db')
 cursor2 = database2.cursor()
 
-database3 = sqlite3.connect('solar_eclipse.db')
+database3 = sqlite3.connect(path_database_creation+r'\solar_eclipse.db')
 cursor3 = database3.cursor()
 
-database4 = sqlite3.connect('near_earth_comets.db')
+database4 = sqlite3.connect(path_database_creation+r'\near_earth_comets.db')
 cursor4 = database4.cursor()
 
-database5 = sqlite3.connect('celestial_events.db')
+database5 = sqlite3.connect(path_database_creation+r'\celestial_events.db')
 cursor5 = database5.cursor()
-
 
 # trails
 trails_active = False
