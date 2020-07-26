@@ -31,6 +31,9 @@ cursor3 = database3.cursor()
 database4 = sqlite3.connect('near_earth_comets.db')
 cursor4 = database4.cursor()
 
+database5 = sqlite3.connect('celestial_events.db')
+cursor5 = database5.cursor()
+
 
 # trails
 trails_active = False
@@ -131,8 +134,8 @@ def searchEventMenu():
         elif eventSelect == 2:
             # search and print results\
             year = input('Enter the year you wanna search for a Lunar Eclipse: ')
-            cursor2.execute("""SELECT `Calendar Date`, `Eclipse Type` FROM `Lunar Eclipse` WHERE `Calendar Date` LIKE ?""",(year + ' %',))
-            query_result1 = cursor2.fetchall()
+            cursor5.execute("""SELECT `Calendar Date`, `Eclipse Type` FROM `Lunar Eclipse` WHERE `Calendar Date` LIKE ?""",(year + ' %',))
+            query_result1 = cursor5.fetchall()
             for i in query_result1:
                 print(i)
         elif eventSelect == 3:
@@ -157,7 +160,6 @@ def searchBodyMenu():
         print(" [ 1 ] to Search for Planets")
         print(" [ 2 ] to Search for Stars")
         print(" [ 3 ] to Search for Comets")
-        print(" [ 4 ] to Search for Body Type D")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
         eventSelect = int(input())
@@ -306,6 +308,15 @@ if __name__ == "__main__":
 
 database.commit()
 database1.commit()
+database2.commit()
+database3.commit()
+database4.commit()
+database5.commit()
+
 
 database.close()
 database1.close()
+database2.close()
+database3.close()
+database4.close()
+database5.close()
