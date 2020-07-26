@@ -266,3 +266,9 @@ if __name__ == "__main__":
         # update GUI and wait
         pygame.display.update()
         time.sleep(0.05 * time_scale)
+
+database.commit()
+database1.commit()
+
+database.close()
+database1.close()
