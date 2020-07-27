@@ -19,7 +19,6 @@ path_database_creation=os.getcwd()
 #create every database needed.
 create_db()
 
-print(path_database_creation+'\Stars.db')
 database = sqlite3.connect(path_database_creation+r'/celestial_objects.db')
 cursor = database.cursor()
 
@@ -64,18 +63,18 @@ GRAY = (128, 128, 128)
 def setup():
     # sun
     # Body(mass, x-position, y-position, radius, color, sun, root, trails, theta)
-    the_sun = Star.create_star('Sun', 1000, WIDTH/2, HEIGHT/2, 10, YELLOW, True, gui.space, trails_active, 0)
+    the_sun = Star.create_star('Sun', WIDTH/2, HEIGHT/2, 10, YELLOW, gui.space, trails_active, 0)
 
     # planets
     # Body(name, mass, x-position, y-position, radius, color, sun, root, trails)
-    mercury = CelestialBody.create_planet('Mercury', np.random.randint(0, 10), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active, np.random.random_sample())
-    venus = CelestialBody.create_planet('Venus', np.random.randint(10, 20), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active, np.random.random_sample())
-    earth = CelestialBody.create_planet('Earth', np.random.randint(20, 30), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active, np.random.random_sample())
-    mars = CelestialBody.create_planet('Mars', np.random.randint(30, 40), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, RED, False, gui.space, trails_active, np.random.random_sample())
-    jupiter = CelestialBody.create_planet('Jupiter', np.random.randint(40, 50), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, YELLOW, False, gui.space, trails_active, np.random.random_sample())
-    saturn = CelestialBody.create_planet('Saturn', np.random.randint(50, 60), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, GREEN, False, gui.space, trails_active, np.random.random_sample())
-    uranus = CelestialBody.create_planet('Uranus', np.random.randint(60, 70), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, RED, False, gui.space, trails_active, np.random.random_sample())
-    neptune = CelestialBody.create_planet('Neptune', np.random.randint(70, 90), np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, BLUE, False, gui.space, trails_active, np.random.random_sample())
+    mercury = CelestialBody.create_planet('Mercury', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, GREEN, gui.space, trails_active, np.random.random_sample())
+    venus = CelestialBody.create_planet('Venus', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, YELLOW, gui.space, trails_active, np.random.random_sample())
+    earth = CelestialBody.create_planet('Earth', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, BLUE, gui.space, trails_active, np.random.random_sample())
+    mars = CelestialBody.create_planet('Mars', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, RED, gui.space, trails_active, np.random.random_sample())
+    jupiter = CelestialBody.create_planet('Jupiter', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, YELLOW, gui.space, trails_active, np.random.random_sample())
+    saturn = CelestialBody.create_planet('Saturn', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, GREEN, gui.space, trails_active, np.random.random_sample())
+    uranus = CelestialBody.create_planet('Uranus', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, RED, gui.space, trails_active, np.random.random_sample())
+    neptune = CelestialBody.create_planet('Neptune', np.random.randint(0, WIDTH), np.random.randint(0, HEIGHT), 5, BLUE, gui.space, trails_active, np.random.random_sample())
 
     # list of all bodies in universe
     global bodies
@@ -332,17 +331,17 @@ if __name__ == "__main__":
         time.sleep(0.05 * time_scale)
 
 
-database.commit()
-database1.commit()
-database2.commit()
-database3.commit()
-database4.commit()
-database5.commit()
+#database.commit()
+#database1.commit()
+#database2.commit()
+#database3.commit()
+#database4.commit()
+#database5.commit()
 
 
-database.close()
-database1.close()
-database2.close()
-database3.close()
-database4.close()
-database5.close()
+#database.close()
+#database1.close()
+#database2.close()
+#database3.close()
+#database4.close()
+#database5.close()
