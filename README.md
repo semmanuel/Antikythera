@@ -24,6 +24,7 @@ Graphical simulation of the solar system.
 - Sqlite3
 - Pandas
 - SQLAlchemy
+- Skyfield
 
 ## Installation Set Up
 *PyCharm allows you to easily install modules through File > Settings > Project: Antikythera > Project Interpreter >* ``+``.
@@ -34,6 +35,7 @@ pip install pygame
 pip install numpy
 pip install sqlalchemy
 pip install pandas
+pip install skyfield
 ```
 
 Clone project, setup databases, and run main program.
