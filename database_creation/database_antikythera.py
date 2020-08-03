@@ -11,28 +11,28 @@ class CelestialBody(Body):
                 real_gravity, real_escape_velocity, real_rotation_period, real_length_of_day, real_distance_from_sun, real_perihelion, real_aphelion,
                 real_orbital_period, real_orbital_velocity, real_orbital_inclination, real_orbital_eccentricity, real_obliquity_to_orbit,
                 real_mean_temperature, real_surface_pressure, real_number_of_moons, real_has_ring_system, real_has_global_magnetic_field):
-    self.name = name #None
-    self.mass = real_mass #None
-    self.diameter = real_diameter #None
+    self.name = name
+    self.mass = real_mass
+    self.diameter = real_diameter
     self.volume = real_volume
-    self.density = real_density #None
-    self.gravity = real_gravity #None
-    self.escape_velocity = real_escape_velocity#None
-    self.rotation_period = real_rotation_period#None
-    self.length_of_day = real_length_of_day#None
-    self.distance_from_sun = real_distance_from_sun#None
-    self.perihelion = real_perihelion #None
-    self.aphelion = real_aphelion#None
-    self.orbital_period = real_orbital_period#None
-    self.orbital_velocity = real_orbital_velocity#None
-    self.orbital_inclination = real_orbital_inclination#None
-    self.orbital_eccentricity = real_orbital_eccentricity#None
-    self.obliquity_to_orbit = real_obliquity_to_orbit#None
-    self.mean_temperature = real_mean_temperature#None
-    self.surface_pressure = real_surface_pressure#None
-    self.number_of_moons = real_number_of_moons#None
-    self.has_ring_system = real_has_ring_system#None
-    self.has_global_magnetic_field = real_has_global_magnetic_field#None
+    self.density = real_density
+    self.gravity = real_gravity
+    self.escape_velocity = real_escape_velocity
+    self.rotation_period = real_rotation_period
+    self.length_of_day = real_length_of_day
+    self.distance_from_sun = real_distance_from_sun * 1e9
+    self.perihelion = real_perihelion * 1e9
+    self.aphelion = real_aphelion * 1e9
+    self.orbital_period = real_orbital_period
+    self.orbital_velocity = real_orbital_velocity
+    self.orbital_inclination = real_orbital_inclination
+    self.orbital_eccentricity = real_orbital_eccentricity
+    self.obliquity_to_orbit = real_obliquity_to_orbit
+    self.mean_temperature = real_mean_temperature
+    self.surface_pressure = real_surface_pressure
+    self.number_of_moons = real_number_of_moons
+    self.has_ring_system = real_has_ring_system
+    self.has_global_magnetic_field = real_has_global_magnetic_field
     Body.__init__( self, m, x, y, r, c, s, root, tr, theta)
 
   def update(self, distance_scaling, velocity_scaling):
@@ -124,7 +124,6 @@ class Star(Body):
                 root,
                 tr,
                 theta,
-                query_result[1],
                 query_result[2],
                 query_result[3],
                 query_result[4],
@@ -136,7 +135,8 @@ class Star(Body):
                 query_result[10],
                 query_result[11],
                 query_result[12],
-                query_result[13])
+                query_result[13],
+                query_result[14])
 
 
 
