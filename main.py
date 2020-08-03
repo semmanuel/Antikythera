@@ -116,12 +116,12 @@ def searchEventMenu():
         print(" [ 3 ] to Search for Solar Eclipse")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
-        eventSelect = int(input())
-        if eventSelect == 0:
+        eventSelect = input()
+        if eventSelect == '0':
             print("Exiting....\n\n")
             running = False
             break
-        elif eventSelect == 1:
+        elif eventSelect == '1':
             # search and print results\
             y = 1
             cursor2.execute("""SELECT DISTINCT `Object Classification` FROM `Asteroid Orbits`""")
@@ -141,14 +141,14 @@ def searchEventMenu():
                 for i in query_result1:
                     print(i)
 
-        elif eventSelect == 2:
+        elif eventSelect == '2':
             # search and print results\
             year = input('Enter the year you wanna search for a Lunar Eclipse: ')
             cursor5.execute("""SELECT `Calendar Date`, `Eclipse Type` FROM `Lunar Eclipse` WHERE `Calendar Date` LIKE ?""",(year + ' %',))
             query_result1 = cursor5.fetchall()
             for i in query_result1:
                 print(i)
-        elif eventSelect == 3:
+        elif eventSelect == '3':
             # search and print results\
             year = input('Enter the year you wanna search for a Solar Eclipse: ')
             cursor3.execute("""SELECT `Calendar Date`, `Eclipse Type` FROM `Solar Eclipse` WHERE `Calendar Date` LIKE ?""",(year + ' %',))
@@ -172,33 +172,33 @@ def searchBodyMenu():
         print(" [ 3 ] to Search for Comets")
         print(" [ 0 ] to Exit Search Menu")
         print("===========================================")
-        eventSelect = int(input())
-        if eventSelect == 0:
+        eventSelect = input()
+        if eventSelect == '0':
             print("Exiting....\n\n")
             running = False
             break
-        elif eventSelect == 1:
+        elif eventSelect == '1':
             # search and print results\
             cursor.execute("""SELECT planet from celestial_objects""")
             query_result = [row[0] for row in cursor.fetchall()]
             for i in query_result:
                 print(i)
 
-        elif eventSelect == 2:
+        elif eventSelect == '2':
             # search and print results\
             cursor1.execute("""SELECT Star from Stars WHERE Star != 'None'""")
             query_result = [row[0] for row in cursor1.fetchall()]
             for i in query_result:
                 print(i)
 
-        elif eventSelect == 3:
+        elif eventSelect == '3':
             # search and print results\
             cursor4.execute("""SELECT Object, Epoch FROM Comets """)
             query_result = cursor4.fetchall()
             for i in query_result:
                 print(i)
 
-        elif eventSelect == 4:
+        elif eventSelect == '4':
             # search and print results\
             print("Searching...\n\n")
         else:
@@ -207,6 +207,7 @@ def searchBodyMenu():
 
 def searchTransferwindow():
 
+    print('Choose from 1) Mars 2) Venus 3) Earth 4) Mars 5) Jupiter 6) Saturn 7) Uranus 8) Neptune 9) Pluto')
     Object1 = input('Enter the origin planet: ')
     Object2 = input('Enter the destination planet: ')
 
