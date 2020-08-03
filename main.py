@@ -235,7 +235,7 @@ def searchTransferwindow():
 if __name__ == "__main__":
     # initiate pygame and clock
     pygame.init()
-    pygame.display.set_caption('antikythera beta')
+    pygame.display.set_caption('antikythera')
     clock = pygame.time.Clock()
     gui = GUI(WIDTH, HEIGHT)
     time_scale = 1
@@ -278,10 +278,17 @@ if __name__ == "__main__":
                 # zooming with scroll wheel
                 if event.button == 4:
                     zoom_level = zoom_level * 1.1
+                    if zoom_level >= 250:
+                       zoom_level = 250
+                    else:
+                        zoom_level = zoom_level * 1.1
                     gui.space.fill(BLACK)
                     zoomed = True
                 elif event.button == 5:
-                    zoom_level = zoom_level / 1.1
+                    if zoom_level <= 0.1:
+                       zoom_level = 0.1
+                    else:
+                        zoom_level = zoom_level / 1.1
                     gui.space.fill(BLACK)
                     zoomed = True
 
