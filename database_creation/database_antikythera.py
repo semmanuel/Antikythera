@@ -20,7 +20,8 @@ class CelestialBody(Body):
     self.escape_velocity = real_escape_velocity
     self.rotation_period = real_rotation_period
     self.length_of_day = real_length_of_day
-    self.distance_from_sun = real_distance_from_sun * 1e9
+    self.distance_from_sun = real_distance_from_sun
+    self.real_distance_from_sun = real_distance_from_sun * 1e9
     self.perihelion = real_perihelion * 1e9
     self.aphelion = real_aphelion * 1e9
     self.orbital_period = real_orbital_period
