@@ -207,7 +207,8 @@ def searchBodyMenu():
 
 def searchTransferwindow():
 
-    print('Choose from 1) Mars 2) Venus 3) Earth 4) Mars 5) Jupiter 6) Saturn 7) Uranus 8) Neptune 9) Pluto')
+    print('Choose from 1) Mercury 2) Venus 3) Earth 4) Mars 5) Jupiter 6) Saturn 7) Uranus 8) Neptune 9) Pluto')
+    print('Type in the exact wording for the planets.')
     Object1 = input('Enter the origin planet: ')
     Object2 = input('Enter the destination planet: ')
 
